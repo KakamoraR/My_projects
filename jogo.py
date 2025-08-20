@@ -446,7 +446,7 @@ while True:
                                     six_digit = None
                                     print(eight_digit)
 
-                                time.sleep(0.5)
+                                time.sleep(0.6)
                                 while True:
                                     if os.name == "nt":
                                         os.system('cls')
