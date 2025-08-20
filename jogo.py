@@ -14,7 +14,10 @@ while True:
     vitoria = 0
     empate = 0
     menu = False
-    os.system('clear')
+    if os.name == "nt":
+        os.system('cls')
+    else:
+        os.system('clear')
     caminho=input('Escolha seu caminho: \n[B]em    ' \
     '[R]egras' \
     '\n[M]al    ' \
@@ -31,7 +34,10 @@ while True:
         continue
 
     while caminho[0] == 'b':
-        os.system('clear')
+        if os.name == "nt":
+            os.system('cls')
+        else:
+            os.system('clear')
 
 
         continuar = input('Você escolheu o caminho do bem, deseja continuar? [S]im [N]ão ')
@@ -45,7 +51,10 @@ while True:
 
         if continuar[0] == 's':
             while True:
-                os.system('clear')
+                if os.name == "nt":
+                    os.system('cls')
+                else:
+                    os.system('clear')
                 print(
                     'Continuaremos para o jogo, serão 3 partes:\n' \
                     '\nFase 1 - Descubra a palavra;' \
@@ -64,7 +73,10 @@ while True:
                     continue
 
                 if continuar[0] == 's':
-                    os.system('clear')
+                    if os.name == "nt":
+                        os.system('cls')
+                    else:
+                        os.system('clear')
                     print('Primeiro jogo... COMECE!!')
                     palavra_formada = ''
                     letras_acertadas = ''
@@ -82,12 +94,18 @@ while True:
 
                         if not letra_user == palavra_secreta:
                             if len(letra_user) > 1:
-                                os.system('clear')
+                                if os.name == "nt":
+                                    os.system('cls')
+                                else:
+                                    os.system('clear')
                                 print('Se você tentou adivinhar a palavra, tente de novo. Caso contrário, insira somente uma LETRA por vez!!')
                                 print(palavra_formada)
                                 continue
                             if not letra_user.isalpha():
-                                os.system('clear')
+                                if os.name == "nt":
+                                    os.system('cls')
+                                else:
+                                    os.system('clear')
                                 print('Se você tentou adivinhar a palavra, tente de novo. Caso contrário, insira somente uma LETRA por vez!!')
                                 print(palavra_formada)
                                 continue
@@ -103,13 +121,19 @@ while True:
                             else:
                                 palavra_formada +='*'
 
-                        os.system('clear')
+                        if os.name == "nt":
+                            os.system('cls')
+                        else:
+                            os.system('clear')
                             
                         print(palavra_formada)
 
                         if letra_user == palavra_secreta or palavra_formada == palavra_secreta:
                             while True:
-                                os.system('clear')
+                                if os.name == "nt":
+                                    os.system('cls')
+                                else:
+                                    os.system('clear')
                                 print('Parabéns, você passou para a segunda fase, continue assim!!')
                                 continuar = input('Pronto? [S]im [N]ão \n(se não, você voltará para o menu): ')
                                 if not continuar.isalpha():
@@ -134,7 +158,10 @@ while True:
                     if acabar:
                         break
 
-                    os.system('clear')
+                    if os.name == "nt":
+                        os.system('cls')
+                    else:
+                        os.system('clear')
 
                     print('Vamos continuar para a fase 2... Que comece o segundo jogo!!')
 
@@ -146,40 +173,61 @@ while True:
                             \nNúmero de escolha: '                                       
                             )
                         if not numero.isdigit():
-                            os.system('clear')
+                            if os.name == "nt":
+                                os.system('cls')
+                            else:
+                                os.system('clear')
                             print('Escreva somente números!')
                             continue
                         numero = int(numero)
                         
                         if numero > sorteado:
-                            os.system('clear')
+                            if os.name == "nt":
+                                os.system('cls')
+                            else:
+                                os.system('clear')
                             print('Digite um número menor!')
                             tentativa+=1
                         elif numero < sorteado:
-                            os.system('clear')
+                            if os.name == "nt":
+                                os.system('cls')
+                            else:
+                                os.system('clear')
                             print('Digite um número maior!')
                             tentativa+=1
                         else:
                             print('Parabéns')
                             break
                         if tentativa == 5:
-                            os.system('clear')
+                            if os.name == "nt":
+                                os.system('cls')
+                            else:
+                                os.system('clear')
                             print('Game over!!')
                             menu = True
                             break
                     if menu:
                         break
                     
-                    os.system('clear')
+                    if os.name == "nt":
+                        os.system('cls')
+                    else:
+                        os.system('clear')
                     print('Parabéns, você acertou o número! Passaremos para a última fase.')
                     while True:
                         continuar = input('Pronto para a última fase? [S]im [N]ão \n(Se não, irá voltar para o menu): ')
                         if not continuar.isalpha():
-                            os.system('clear')
+                            if os.name == "nt":
+                                os.system('cls')
+                            else:
+                                os.system('clear')
                             continue
                         continuar = continuar.lower()
                         if not continuar[0] in 'sn' or ' ' in continuar:
-                            os.system('clear')
+                            if os.name == "nt":
+                                os.system('cls')
+                            else:
+                                os.system('clear')
                             continue
                         if continuar[0] == 's':
                             break
@@ -190,7 +238,10 @@ while True:
                     if menu:
                         break
                     
-                    os.system('clear')
+                    if os.name == "nt":
+                        os.system('cls')
+                    else:
+                        os.system('clear')
                     tentativa = 0
 
                     print('O jogo agora será jankenpon melhor de 3. \n(Escreva ou "Pedra", ou "Papel", ou "Tesoura")')
@@ -206,17 +257,26 @@ while True:
 
                         player = input(f'prepare-se...3...2...1... Jogue!!: ')
                         if not player.isalpha():
-                            os.system('clear')
+                            if os.name == "nt":
+                                os.system('cls')
+                            else:
+                                os.system('clear')
                             print('Escreva "Pedra", ou "Papel", ou "Tesoura"!')
                             continue
                         if len(player) <5:
-                            os.system('clear')
+                            if os.name == "nt":
+                                os.system('cls')
+                            else:
+                                os.system('clear')
                             print('Escreva "Pedra", ou "Papel", ou "Tesoura"!')
                             continue
 
                         player = player.lower()
 
-                        os.system('clear')
+                        if os.name == "nt":
+                            os.system('cls')
+                        else:
+                            os.system('clear')
                         print(f'A máquina jogou: {jankenpon} \nVocê jogou: {player}')
 
                         if player == jankenpon:
@@ -237,7 +297,10 @@ while True:
                         if vitoria==2 or derrota==2:
                             break
                         print(f'\nVitórias: {vitoria} \nDerrotas: {derrota} \nEmpates: {empate}\n')
-                    os.system('clear')
+                    if os.name == "nt":
+                        os.system('cls')
+                    else:
+                        os.system('clear')
 
                     if derrota > 1:
                         print('Game Over!!')
@@ -250,17 +313,26 @@ while True:
                             conquistas.append('Jogo "Bem" feito.')
                             continuar = input('Continuar? [S]im [N]ão \n(Se não, o jogo acabará / Se sim, o jogo voltará ao menu): ')
                             if not continuar.isalpha():
-                                os.system('clear')
+                                if os.name == "nt":
+                                    os.system('cls')
+                                else:
+                                    os.system('clear')
                                 continue
                             if not continuar[0] in 'sn' or ' ' in continuar:
-                                os.system('clear')
+                                if os.name == "nt":
+                                    os.system('cls')
+                                else:
+                                    os.system('clear')
                                 continue
                             if continuar[0] == 's':
                                 menu = True
                                 break
                             if continuar[0] == 'n':
                                 while continuar[0] == 'n':
-                                    os.system('clear')
+                                    if os.name == "nt":
+                                        os.system('cls')
+                                    else:
+                                        os.system('clear')
                                     continuar = input('Deseja sair mesmo: [S]im [N]ão ')
                                     if not continuar.isalpha():
                                         continue
@@ -288,7 +360,10 @@ while True:
     while caminho[0] == 'm':
         ...
     while caminho[0] == 'r':
-        os.system('clear')
+        if os.name == "nt":
+            os.system('cls')
+        else:
+            os.system('clear')
         print('Para deixar mais claro, esse jogo possui algumas regras e explicações:\n' \
         '\n1 - Acaso perder em qualquer jogo, é game over!\nSeu processo não será salvo, incluindo as conquistas, e o código acabará.' \
         '\n2 - O nível do bem é mais fácil do que o nível do mal, \napesar disso, você dependerá da sua sorte para passar')
@@ -301,7 +376,10 @@ while True:
         else:
             break
     while caminho[0] == 'c':
-        os.system('clear')
+        if os.name == "nt":
+            os.system('cls')
+        else:
+            os.system('clear')
         print(f'Bem vindo a aba de conquistas, atualmente você possui {len(conquistas)}.')
         print(conquistas)
         voltar = input('Digite "V" para voltar: ')
@@ -313,7 +391,10 @@ while True:
         else:
             break
     while caminho[0] == 's':
-        os.system('clear')
+        if os.name == "nt":
+            os.system('cls')
+        else:
+            os.system('clear')
         continuar = input('Deseja sair mesmo: [S]im [N]ão ')
         if not continuar.isalpha():
             continue
