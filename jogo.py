@@ -1,3 +1,4 @@
+#tempo usado para a criação do código: 11h
 import requests
 
 url = "https://random-word-api.herokuapp.com/word?number=1"
