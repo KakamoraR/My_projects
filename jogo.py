@@ -461,6 +461,10 @@ while True:
                                         continue
                                     num_user = int(num_user)
                                     if num_user == four_digit or num_user == six_digit:
+                                        if os.name == 'nt':
+                                            os.system('cls')
+                                        else:
+                                            os.system('clear')
                                         print('Parabéns, você passou para o próximo nível')
                                         nivel +=1
                                         continuar = input('Pronto? [S]im [N]ão (Se não você voltará ao menu) ')
