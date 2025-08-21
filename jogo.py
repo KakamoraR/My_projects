@@ -446,7 +446,10 @@ while True:
                                     six_digit = None
                                     print(eight_digit)
 
-                                time.sleep(0.6)
+                                if nivel <=1:
+                                    time.sleep(0.6)
+                                else:
+                                    time.sleep(1)
                                 while True:
                                     if os.name == "nt":
                                         os.system('cls')
@@ -486,7 +489,7 @@ while True:
                                                 os.system('clear')
 
                                             continuar = input('Parabéns, você passou para a próxima fase.' \
-                                            '\npronto para continuar? [S]im [N]ão (Se não, você voltará ao menu)')
+                                            '\npronto para continuar? [S]im [N]ão (Se não, você voltará ao menu) ')
                                             if not continuar.isalpha():
                                                 print('Faça uma escolha')
                                                 continue
@@ -514,6 +517,7 @@ while True:
                         if menu or next:
                             break
                     print('Fase 2')
+                    time.sleep(2)
                 if menu:
                     break
                 if continuar[0] == 'n':
