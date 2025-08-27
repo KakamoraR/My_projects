@@ -1,4 +1,4 @@
-#tempo usado para a criação do código: 13:30h
+#tempo usado para a criação do código: 13:45h
 import requests
 import time
 
@@ -8,6 +8,7 @@ import random
 import os
 acabar = False
 conquistas = []
+itens = []
 
 while True:
     sorteado = random.randint(1,20)
@@ -18,14 +19,22 @@ while True:
     derrota = 0
     vitoria = 0
     empate = 0
+    vida_player = 100
+    vida_monstro = 30
+    vida_boss = 70
+    ataque_basico = 15
+    ataque_secundario = 20
+    ataque_especial = 33
     menu = False
     next = False
+
     if os.name == "nt":
         os.system('cls')
     else:
         os.system('clear')
     caminho=input('Escolha seu caminho: \n[B]em    ' \
-    '[R]egras' \
+    '[R]egras        ' \
+    '[I]tens' \
     '\n[M]al    ' \
     '[C]onquistas    ' \
     '[S]air' \
@@ -36,7 +45,7 @@ while True:
 
     caminho=caminho.lower()
 
-    if caminho in ' ' or not caminho[0] in 'bmcrs':
+    if caminho in ' ' or not caminho[0] in 'bmcrsi':
         continue
 
     while caminho[0] == 'b':
@@ -518,8 +527,18 @@ while True:
                                     break
                         if menu or next:
                             break
-                    print('Fase 2')
-                    time.sleep(2)
+                    if next:
+                        next = False
+                        while True:
+                            if os.name == 'nt':
+                                os.system('cls')
+                            else:
+                                os.system('clear')
+                            
+                            print('Bem vindo a fase 2 do caminho do mal. Segue os dados do player:')
+                            print(f'\nitens: {itens}'
+                            f'\nvida: {vida_player}')
+
                 if menu:
                     break
                 if continuar[0] == 'n':
@@ -577,6 +596,21 @@ while True:
             acabar = True
             break
         if continuar[0] == 'n':
+            break
+    while caminho[0] == 'i':
+        if os.name == "nt":
+            os.system('cls')
+        else:
+            os.system('clear')
+        print(f'Bem vindo a aba de itens, atualmente você possui {len(itens)}.')
+        print(itens)
+        voltar = input('Digite "V" para voltar: ')
+        if not voltar.isalpha():
+            continue
+        voltar = voltar.lower()
+        if not voltar[0] in 'v':
+            continue
+        else:
             break
     if acabar:
         break
