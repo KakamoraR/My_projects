@@ -446,8 +446,10 @@ while True:
                                     six_digit = None
                                     print(eight_digit)
 
-                                if nivel <=1:
+                                if nivel ==0:
                                     time.sleep(0.6)
+                                elif nivel ==1:
+                                    time.sleep(0.8)
                                 else:
                                     time.sleep(1)
                                 while True:
