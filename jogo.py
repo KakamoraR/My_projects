@@ -7,8 +7,11 @@ url = "https://random-word-api.herokuapp.com/word?number=1"
 import random
 import os
 acabar = False
-conquistas = []
-itens = []
+conquistas = [] 
+itens = [] #itens em geral
+uso = [] #Itens sendo usados
+dano_a_mais = {} #dano de acordo com a arma
+defesa = {} #defesa ganha de acordo com a armadura
 
 while True:
     sorteado = random.randint(1,20)
@@ -538,7 +541,90 @@ while True:
                             print('Bem vindo a fase 2 do caminho do mal. Segue os dados do player:')
                             print(f'\nitens: {itens}'
                             f'\nvida: {vida_player}')
+                            
+                            continuar = input('Pronto para começar? [S]im [N]ão (Se não, você voltará ao menu) ')
 
+                            if not continuar.isalpha():
+                                continue
+                            continuar = continuar.lower()
+                            if not continuar[0] in 'sn':
+                                continue
+                            while continuar[0] == 's':
+                                if os.name == 'nt':
+                                    os.system('cls')
+                                else:
+                                    os.system('clear')
+                                print('O player estava entendiado em sua casa, e queria se divertir de alguma forma...')
+                                time.sleep(4)
+                                if os.name == 'nt':
+                                    os.system('cls')
+                                else:
+                                    os.system('clear')
+                                print('Depois de um tempo, o player decidiu sair por ai com alguma garota que encontrasse, para talvez ter um clima entre eles.')
+                                time.sleep(4)
+                                if os.name == 'nt':
+                                    os.system('cls')
+                                else:
+                                    os.system('clear')
+                                print('Após sair pela vila, achou uma garota que era de seu tipo, e a convidou para passear pelo bosque.')
+                                time.sleep(4)
+                                if os.name == 'nt':
+                                    os.system('cls')
+                                else:
+                                    os.system('clear')
+                                print('Ambos estavam curtindo a voltinha que estavam dando, até se aproximarem um pouco mais e...', time.sleep(2.5), 'Urrrrrr')
+                                time.sleep(3)
+                                if os.name == 'nt':
+                                    os.system('cls')
+                                else:
+                                    os.system('clear')
+                                print('Essa não, um zombie!!!')
+                                time.sleep(3)
+                                if os.name == 'nt':
+                                    os.system('cls')
+                                else:
+                                    os.system('clear')
+                                print('Após esse momento, player se prepara para o combate')
+                                time.sleep(3)
+                                while True:
+                                    if os.name == 'nt':
+                                        os.system('cls')
+                                    else:
+                                        os.system('clear')
+                                    continuar = input('Pronto para o combate? [S]im [N]ão (Se não, você voltará para o menu) ')
+                                    if not continuar.isalpha():
+                                        continue
+                                    continuar = continuar.lower()
+                                    if not continuar[0] in 'sn':
+                                        continue
+                                    while continuar[0] == 's':
+                                        if os.name == 'nt':
+                                            os.system('cls')
+                                        else:
+                                            os.system('clear')
+
+                                        dado = random.randint(1,20)
+
+                                        dano = {
+                                            if dado == 20 and 'Espada' in uso:
+                                                25 + dano_a_mais
+                                                
+                                        
+                                        print(f'Ataque de player, jogando o dado... ', time.sleep(2), f'{dado}!')
+                                        time.sleep(2)
+                                        print(f'player deu {dano} de dano!')
+                                        
+                                    if continuar[0] == 'n':
+                                        menu = True
+                                        break
+
+                                if menu:
+                                    break
+                                        
+                            if continuar[0] == 'n':
+                                menu = True
+                                break
+                                
                 if menu:
                     break
                 if continuar[0] == 'n':
