@@ -598,6 +598,7 @@ while True:
                                     if not continuar[0] in 'sn':
                                         continue
                                     while continuar[0] == 's':
+                                        dano = 0
                                         if os.name == 'nt':
                                             os.system('cls')
                                         else:
@@ -605,10 +606,10 @@ while True:
 
                                         dado = random.randint(1,20)
 
-                                        dano = {
-                                            if dado == 20 and 'Espada' in uso:
-                                                25 + dano_a_mais
-                                                
+                                        if dado == 20 and 'Espada' in uso:
+                                            dano = 25 + dano_a_mais
+                                        elif dado == 20 and 'Excalibur' in uso:
+                                            ...
                                         
                                         print(f'Ataque de player, jogando o dado... ', time.sleep(2), f'{dado}!')
                                         time.sleep(2)
