@@ -1,4 +1,4 @@
-#tempo usado para a criação do código: 14:45h
+#tempo usado para a criação do código: 15:30h
 import requests
 import time
 
@@ -10,8 +10,8 @@ acabar = False
 conquistas = [] 
 itens = [] #itens em geral
 uso = [] #Itens sendo usados
-dano_a_mais = {} #dano de acordo com a arma
-defesa = {} #defesa ganha de acordo com a armadura
+dano_a_mais = 0 #dano de acordo com a arma
+defesa = 0 #defesa ganha de acordo com a armadura
 
 while True:
     sorteado = random.randint(1,20)
@@ -22,9 +22,6 @@ while True:
     derrota = 0
     vitoria = 0
     empate = 0
-    vida_player = 100
-    vida_monstro = 30
-    vida_boss = 70
     ataque_basico = 15
     ataque_secundario = 20
     ataque_especial = 33
@@ -587,6 +584,10 @@ while True:
                                 print('Após esse momento, player se prepara para o combate')
                                 time.sleep(3)
                                 while True:
+                                    vida_player = 100
+                                    vida_monstro = 30
+                                    vida_boss = 70
+                                    monstro_atual = False
                                     if os.name == 'nt':
                                         os.system('cls')
                                     else:
@@ -598,22 +599,82 @@ while True:
                                     if not continuar[0] in 'sn':
                                         continue
                                     while continuar[0] == 's':
+                                        
+                                        if os.name == 'nt':
+                                            os.system('cls')
+                                        else:
+                                            os.system('clear')
                                         dano = 0
+                                        dado = random.randint(1,20)
+                                        ataque = random.randint(1,3)
+                        
+                                        if dado == 20 and 'Espada' in uso or 'Excalibur' in uso:
+                                            dano = 25 + dano_a_mais
+                                        else:
+                                            dano = dado
+                                        
+                                        print(f'Ataque de player, jogando o dado... ', time.sleep(2), f'{dado}!')
+                                        time.sleep(2)
+                                        print(f'player deu {dano} de dano!')
+                                        time.sleep(3)
+
+                                        if not vida_monstro <=0:
+                                            vida_monstro -= dano
+                                        elif vida_boss <=0:
+                                            if os.name == 'nt':
+                                                os.system('cls')
+                                            else:
+                                                os.system('clear')
+                                            print('O player derrotou os monstros!!')
+                                            item = random.randint(1,50)
+                                            if item == 1 and not 'Espada' in itens:
+                                                conquistas.append('Espada')
+                                                itens.append('Espada')
+                                            elif item == 2 and not 'Excalibur' in itens:
+                                                consquistas.append('Excalibur')
+                                                itens.append('Excalibur')
+                                            elif item == 3 and not 'Armadura básica' in itens:
+                                                conquistas.append('Armadura básica')
+                                                itens.append('Armadura básica')
+                                            elif item == 4 and not 'Armadura lendária' in itens:
+                                                conquistas.append('Armadura lendária')
+                                                itens.append('Armadura lendária')
+                                            if 'Espada' in conquistas and 'Excalibur' in conquistas and 'Armadura básica' in conquistas and 'Armadura lendária' in conquistas and not 'Set completo' in conquistas:
+                                                conquistas.append('Set completo')
+                                            break
+                                                
+                                        else:
+                                            monstro_atual = True
+                                            vida_boss -= dano
+
                                         if os.name == 'nt':
                                             os.system('cls')
                                         else:
                                             os.system('clear')
 
-                                        dado = random.randint(1,20)
+                                        if monstro_atual:
+                                            print(f'O Boss está com {vida_boss} de vida')
+                                            time.sleep(3)
+                                            if os.name == 'nt':
+                                                os.system('cls')
+                                            else:
+                                                os.system('clear')
 
-                                        if dado == 20 and 'Espada' in uso:
-                                            dano = 25 + dano_a_mais
-                                        elif dado == 20 and 'Excalibur' in uso:
+                                            if ataque == 1:
+                                                ataque = ['ataque_basico', ataque_basico]
+                                            elif ataque == 2:
+                                                ataque = ['ataque_secundario', ataque_secundario]
+                                            elif ataque == 3:
+                                                ataque = ['ataque_especial', ataque_especial]
+                                            
+                                            print('Vez do Boss atacar...', time.sleep(2), f'Boss está usando{ataque[0]}')
                                             ...
-                                        
-                                        print(f'Ataque de player, jogando o dado... ', time.sleep(2), f'{dado}!')
-                                        time.sleep(2)
-                                        print(f'player deu {dano} de dano!')
+                                                                                       
+                                        else:
+                                            print(f'O monstro está com {vida_mosntro} de vida')
+                                            time.sleep(3)
+
+                                    #Fase 3
                                         
                                     if continuar[0] == 'n':
                                         menu = True
