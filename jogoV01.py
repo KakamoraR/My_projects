@@ -631,7 +631,7 @@ while True:
                                                 conquistas.append('Espada')
                                                 itens.append('Espada')
                                             elif item == 2 and not 'Excalibur' in itens:
-                                                consquistas.append('Excalibur')
+                                                conquistas.append('Excalibur')
                                                 itens.append('Excalibur')
                                             elif item == 3 and not 'Armadura básica' in itens:
                                                 conquistas.append('Armadura básica')
@@ -671,7 +671,7 @@ while True:
                                             ...
                                                                                        
                                         else:
-                                            print(f'O monstro está com {vida_mosntro} de vida')
+                                            print(f'O monstro está com {vida_monstro} de vida')
                                             time.sleep(3)
 
                                     #Fase 3
