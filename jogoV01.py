@@ -517,8 +517,6 @@ while True:
                                         if menu:
                                             break
                                     else:
-                                        print('Game over!!')
-                                        time.sleep(2)
                                         menu = True
                                         break
                                     if next:
