@@ -1,4 +1,4 @@
-#tempo usado para a criação do código: 15:30h
+#tempo usado para a criação do código: 16h
 import requests
 import time
 
@@ -218,8 +218,6 @@ while True:
                                 os.system('cls')
                             else:
                                 os.system('clear')
-                            print('Game over!!')
-                            time.sleep(2)
                             menu = True
                             break
                     if menu:
@@ -319,8 +317,6 @@ while True:
                         os.system('clear')
 
                     if derrota > 1:
-                        print('Game Over!!')
-                        time.sleep(2)
                         menu = True
                     elif vitoria >1:
                         while True:
@@ -528,16 +524,19 @@ while True:
                     if next:
                         next = False
                         while True:
+                            vida_player = 100
+                            vida_monstro = 30
+                            vida_boss = 70
                             if os.name == 'nt':
                                 os.system('cls')
                             else:
                                 os.system('clear')
                             
                             print('Bem vindo a fase 2 do caminho do mal. Segue os dados do player:')
-                            print(f'\nitens: {itens}'
+                            print(f'\nitens: {uso}'
                             f'\nvida: {vida_player}')
                             
-                            continuar = input('Pronto para começar? [S]im [N]ão (Se não, você voltará ao menu) ')
+                            continuar = input('\nPronto para começar? [S]im [N]ão (Se não, você voltará ao menu) ')
 
                             if not continuar.isalpha():
                                 continue
@@ -567,8 +566,8 @@ while True:
                                     os.system('cls')
                                 else:
                                     os.system('clear')
-                                print('Ambos estavam curtindo a voltinha que estavam dando, até se aproximarem um pouco mais e...', time.sleep(2.5), 'Urrrrrr')
-                                time.sleep(3)
+                                print('Ambos estavam curtindo a voltinha que estavam dando, até se aproximarem um pouco mais e...Urrrrrr')
+                                time.sleep(4)
                                 if os.name == 'nt':
                                     os.system('cls')
                                 else:
@@ -582,9 +581,6 @@ while True:
                                 print('Após esse momento, player se prepara para o combate')
                                 time.sleep(3)
                                 while True:
-                                    vida_player = 100
-                                    vida_monstro = 30
-                                    vida_boss = 70
                                     monstro_atual = False
                                     if os.name == 'nt':
                                         os.system('cls')
@@ -602,27 +598,8 @@ while True:
                                             os.system('cls')
                                         else:
                                             os.system('clear')
-                                        dano = 0
-                                        dado = random.randint(1,20)
-                                        ataque = random.randint(1,3)
-                        
-                                        if dado == 20 and 'Espada' in uso or 'Excalibur' in uso:
-                                            dano = 25 + dano_a_mais
-                                        else:
-                                            dano = dado
                                         
-                                        print(f'Ataque de player, jogando o dado... ', time.sleep(2), f'{dado}!')
-                                        time.sleep(2)
-                                        print(f'player deu {dano} de dano!')
-                                        time.sleep(3)
-
-                                        if not vida_monstro <=0:
-                                            vida_monstro -= dano
-                                        elif vida_boss <=0:
-                                            if os.name == 'nt':
-                                                os.system('cls')
-                                            else:
-                                                os.system('clear')
+                                        if vida_boss <= 0:
                                             print('O player derrotou os monstros!!')
                                             item = random.randint(1,50)
                                             if item == 1 and not 'Espada' in itens:
@@ -640,6 +617,25 @@ while True:
                                             if 'Espada' in conquistas and 'Excalibur' in conquistas and 'Armadura básica' in conquistas and 'Armadura lendária' in conquistas and not 'Set completo' in conquistas:
                                                 conquistas.append('Set completo')
                                             break
+
+                                        dano = 0
+                                        dado = random.randint(1,20)
+                                        ataque = random.randint(1,3)
+                        
+                                        if dado == 20 and 'Espada' in uso or 'Excalibur' in uso:
+                                            dano = 25 + dano_a_mais
+                                        else:
+                                            dano = dado
+                                        
+                                        print(f'Ataque de player, jogando o dado...{dado}!')
+                                        time.sleep(2)
+                                        print(f'player deu {dano} de dano!')
+                                        time.sleep(3)
+
+                                        if not vida_monstro <=0:
+                                            vida_monstro -= dano
+                                        elif vida_boss <=0:
+                                            continue
                                                 
                                         else:
                                             monstro_atual = True
@@ -651,6 +647,8 @@ while True:
                                             os.system('clear')
 
                                         if monstro_atual:
+                                            if vida_boss <=0:
+                                                continue
                                             print(f'O Boss está com {vida_boss} de vida')
                                             time.sleep(3)
                                             if os.name == 'nt':
@@ -665,11 +663,20 @@ while True:
                                             elif ataque == 3:
                                                 ataque = ['ataque_especial', ataque_especial]
                                             
-                                            print('Vez do Boss atacar...', time.sleep(2), f'Boss está usando{ataque[0]}')
+                                            print(f'Vez do Boss atacar... Boss está usando{ataque[0]}')
                                             ...
                                                                                        
                                         else:
-                                            print(f'O monstro está com {vida_monstro} de vida')
+                                            if vida_monstro <=0:
+                                                print('Você derrotou o monstro!!')
+                                                time.sleep(3)
+                                                if os.name == 'nt':
+                                                    os.system('cls')
+                                                else:
+                                                    os.system('clear')
+                                                print('Espera!! Tem outro gigante bem ali!!')
+                                            else:
+                                                print(f'O monstro está com {vida_monstro} de vida')
                                             time.sleep(3)
 
                                     #Fase 3
@@ -732,13 +739,17 @@ while True:
             os.system('cls')
         else:
             os.system('clear')
-        continuar = input('Deseja sair mesmo: [S]im [N]ão ')
+        continuar = input('Deseja sair mesmo? [S]im [N]ão ')
         if not continuar.isalpha():
             continue
         continuar = continuar.lower()
         if ' ' in continuar or not continuar[0] in 'sn':
             continue
         if continuar[0] == 's':
+            if os.name == "nt":
+                os.system('cls')
+            else:
+                os.system('clear')
             acabar = True
             break
         if continuar[0] == 'n':
