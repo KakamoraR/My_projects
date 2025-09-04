@@ -677,6 +677,8 @@ while True:
                                                 else:
                                                     os.system('clear')
                                                 print('Espera!! Tem outro gigante bem ali!!')
+                                                if vida_player <90:
+                                                    vida_player += 10
                                             else:
                                                 print(f'O monstro está com {vida_monstro} de vida')
                                             time.sleep(3)
