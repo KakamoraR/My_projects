@@ -627,8 +627,10 @@ while True:
                                         else:
                                             dano = dado
                                         
-                                        print(f'Ataque de player, jogando o dado...{dado}!')
-                                        time.sleep(2)
+                                        print(f'Ataque de player, jogando o dado...')
+                                        time.sleep(1.5)
+                                        print(dado)
+                                        time.sleep(1.5)
                                         print(f'player deu {dano} de dano!')
                                         time.sleep(3)
 
@@ -679,11 +681,13 @@ while True:
                                                 print(f'O monstro está com {vida_monstro} de vida')
                                             time.sleep(3)
 
-                                    #Fase 3
+                                    
                                         
                                     if continuar[0] == 'n':
                                         menu = True
                                         break
+
+                                    #fase 3
 
                                 if menu:
                                     break
