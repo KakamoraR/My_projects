@@ -1,4 +1,4 @@
-#tempo usado para a criação do código: 16h
+#tempo usado para a criação do código: 17:30h
 import requests
 import time
 
@@ -22,11 +22,12 @@ while True:
     derrota = 0
     vitoria = 0
     empate = 0
-    ataque_basico = 15
+    ataque_basico = 10
     ataque_secundario = 20
     ataque_especial = 33
     menu = False
     next = False
+    sangramento = False
 
     if os.name == "nt":
         os.system('cls')
@@ -599,6 +600,11 @@ while True:
                                         else:
                                             os.system('clear')
                                         
+                                        if vida_player <=0:
+                                            print('Você perdeu')
+                                            menu = True
+                                            break
+
                                         if vida_boss <= 0:
                                             print('O player derrotou os monstros!!')
                                             item = random.randint(1,50)
@@ -633,6 +639,15 @@ while True:
                                         time.sleep(1.5)
                                         print(f'player deu {dano} de dano!')
                                         time.sleep(3)
+                                        if sangramento:
+                                            if os.name == 'nt':
+                                                os.system('cls')
+                                            else:
+                                                os.system('clear')
+                                            print('Player está sangrando (-5)')
+                                            print(f'\nPlayer está com {vida_player} de vida')
+                                            sangramento = False
+                                            time.sleep(3)
 
                                         if not vida_monstro <=0:
                                             vida_monstro -= dano
@@ -659,15 +674,27 @@ while True:
                                                 os.system('clear')
 
                                             if ataque == 1:
-                                                ataque = ['ataque_basico', ataque_basico]
+                                                ataque = ['ataque basico', ataque_basico]
                                             elif ataque == 2:
-                                                ataque = ['ataque_secundario', ataque_secundario]
+                                                ataque = ['ataque secundario', ataque_secundario]
                                             elif ataque == 3:
-                                                ataque = ['ataque_especial', ataque_especial]
+                                                ataque = ['ataque especial', ataque_especial]
                                             
-                                            print(f'Vez do Boss atacar... Boss está usando{ataque[0]}')
-                                            ...
-                                                                                       
+                                            print(f'Vez do Boss atacar... Boss está usando {ataque[0]} ({ataque[1]} de dano)')
+                                            time.sleep(3)
+                                            vida_player -= ataque[1]
+                                            if ataque[0] == 'ataque basico':
+                                                sangramento = True
+                                                vida_player -= 5
+                                                print('Player está sangrando (-5)')
+                                                time.sleep(3)
+                                            if os.name == 'nt':
+                                                os.system('cls')
+                                            else:
+                                                os.system('clear')
+                                            print(f'Player está com {vida_player} de vida')
+                                            time.sleep(3)
+                                                                 
                                         else:
                                             if vida_monstro <=0:
                                                 print('Você derrotou o monstro!!')
@@ -677,15 +704,38 @@ while True:
                                                 else:
                                                     os.system('clear')
                                                 print('Espera!! Tem outro gigante bem ali!!')
-                                                if vida_player <90:
-                                                    vida_player += 10
+                                                if vida_player <85:
+                                                    vida_player += 15
+                                                time.sleep(3)
                                             else:
                                                 print(f'O monstro está com {vida_monstro} de vida')
-                                            time.sleep(3)
+                                                time.sleep(3)
+                                                if os.name == 'nt':
+                                                    os.system('cls')
+                                                else:
+                                                    os.system('clear')
+                                                
+                                                if ataque ==1:
+                                                    ataque = ['ataque basico', ataque_basico]
+                                                else:
+                                                    ataque = ['ataque secundario', ataque_secundario]
 
-                                    
+                                                print(f'Vez do monstro atacar... Monstro está usando {ataque[0]} ({ataque[1]} de dano)')
+                                                time.sleep(3)
+                                                vida_player -= ataque[1]
+                                                if ataque[0] == 'ataque basico':
+                                                    sangramento = True
+                                                    vida_player -= 5
+                                                    print('Player está sangrando (-5)')
+                                                if os.name == 'nt':
+                                                    os.system('cls')
+                                                else:
+                                                    os.system('clear')
+
+                                                print(f'Player está com {vida_player} de vida')
+                                                time.sleep(3)                                    
                                         
-                                    if continuar[0] == 'n':
+                                    if continuar[0] == 'n' or menu:
                                         menu = True
                                         break
 
@@ -694,7 +744,7 @@ while True:
                                 if menu:
                                     break
                                         
-                            if continuar[0] == 'n':
+                            if continuar[0] == 'n' or menu:
                                 menu = True
                                 break
                                 
