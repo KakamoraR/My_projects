@@ -1,4 +1,4 @@
-#tempo usado para a criação do código: 19:45h
+#tempo usado para a criação do código: 22:45h
 import requests
 import time
 import palavras
@@ -8,30 +8,44 @@ acabar = False
 conquistas = [] 
 itens = [] #itens em geral
 uso = [] #Itens sendo usados
-dano_a_mais = 0 #dano de acordo com a arma
-defesa = 0 #defesa ganha de acordo com a armadura
 arma = ['excalibur', 'sabre de luz', 'espada']
 armadura = ['capacete', 'peitoral']
+passou = False
+record = time.time()
 
 while True:
     sorteado = random.randint(1,20)
     four_digit = random.randint(1000,9999)
     six_digit = random.randint(100000,999999)
-    eight_digit = random.randint(10000000, 99999999)
+    eight_digit = random.randint(10000000,99999999)
     derrota = 0
     vitoria = 0
     empate = 0
+    dano_a_mais = 0
+    defesa = 0
     ataque_basico = 10
     ataque_secundario = 20
     ataque_especial = 33
     menu = False
     next = False
     sangramento = False
+    erro = False
+
+    if len(conquistas) == 14:
+        if not '100%' in conquistas:
+            conquistas.append('100%')
+
+    if '100%' in conquistas:
+        parada = time.time()
+        if parada - record <= 1800:
+            if not 'Platinado' in conquistas:
+                conquistas.append('Platinado')
 
     if os.name == "nt":
         os.system('cls')
     else:
         os.system('clear')
+    print(record)
     caminho=input('Escolha seu caminho: \n[B]em    ' \
     '[R]egras        ' \
     '[I]tens' \
@@ -123,7 +137,9 @@ while True:
 
                         if letra_user in palavra_secreta:
                             letras_acertadas += letra_user
-
+                        else:
+                            erro = True
+                        
                         for letra in palavra_secreta:
                             if letra in letras_acertadas:
                                 palavra_formada += letra
@@ -143,6 +159,9 @@ while True:
                                     os.system('cls')
                                 else:
                                     os.system('clear')
+                                if erro==False:
+                                    if not 'no pain no gain' in conquistas:
+                                        conquistas.append('no pain no gain')
                                 print('Parabéns, você passou para a segunda fase, continue assim!!' \
                                 f'\nA palavra secreta era: "{palavra_secreta}"')
                                 continuar = input('Pronto? [S]im [N]ão \n(se não, você voltará para o menu): ')
@@ -207,6 +226,9 @@ while True:
                             tentativa+=1
                         else:
                             print('Parabéns')
+                            if tentativa == 0:
+                                if not 'primeira tentativa' in conquistas:
+                                    conquistas.append('primeira tentativa')
                             break
                         if tentativa == 5:
                             if os.name == "nt":
@@ -317,10 +339,16 @@ while True:
                         while True:
                             print('Parabéns, você ganhou o jogo do bem e ganhou uma conquista e um item!! \n(A não ser que já tenha ganhado antes)')
                             
+                            if vitoria == 2 and empate == 0 and derrota == 0:
+                                if not 'achei fácil' in conquistas:
+                                    conquistas.append('achei fácil')
+
                             item = random.randint(1, 100)
                             if item == 1 and not 'sabre de luz' in conquistas:
                                 itens.append('sabre de luz')
                                 conquistas.append('sabre de luz')
+                                if 'sabre de luz' in conquistas and 'espada' in conquistas and 'excalibur' in conquistas and 'capacete' in conquistas and 'peitoral' in conquistas and not 'Set completo' in conquistas:
+                                    conquistas.append('Set completo')
                             if not 'Jogo "Bem" feito' in conquistas:
                                 conquistas.append('Jogo "Bem" feito')
                                                                 
@@ -596,6 +624,23 @@ while True:
                                             os.system('cls')
                                         else:
                                             os.system('clear')
+
+                                        if uso[0] in armadura:
+                                            if uso[0] == 'capacete':
+                                                defesa = 4
+                                            elif uso[0] == 'peitoral':
+                                                defesa = 7
+                                            else:
+                                                defesa = 0
+                                        elif uso[0] in arma:
+                                            if uso[0] == 'excalibur':
+                                                dano_a_mais = 5
+                                            elif uso[0] == 'espada':
+                                                dano_a_mais = 3
+                                            elif uso[0] == 'sabre de luz':
+                                                dano_a_mais = 10
+                                            else:
+                                                dano_a_mais = 0
                                         
                                         if vida_player <=0:
                                             print('Você perdeu')
@@ -605,6 +650,10 @@ while True:
 
                                         if vida_boss <= 0:
                                             print('O player derrotou os monstros!!')
+                                            if vida_player >=50:
+                                                if not 'nem senti' in conquistas:
+                                                    conquistas.append('nem senti')
+                                            time.sleep(3)
                                             item = random.randint(1,50)
                                             if item == 1 and not 'espada' in itens:
                                                 conquistas.append('espada')
@@ -625,12 +674,12 @@ while True:
                                         dano = 0
                                         dado = random.randint(1,20)
                                         ataque = random.randint(1,3)
+
+                                        if dado == 20:
+                                            if not 'vinte natural' in conquistas:
+                                                conquistas.append('vinte natural')
                         
-                                        if (
-                                            (dado == 20 and 'espada' in uso) or 
-                                            (dado == 20 and 'excalibur' in uso) or
-                                            (dado == 20 and 'sabre de luz' in uso)
-                                        ):
+                                        if uso[0] in arma and dado == 20:
                                             dano = 25 + dano_a_mais
                                         else:
                                             dano = dado + dano_a_mais
@@ -685,7 +734,7 @@ while True:
                                             
                                             print(f'Vez do Boss atacar... Boss está usando {ataque[0]} ({ataque[1]} de dano)')
                                             time.sleep(3)
-                                            vida_player -= ataque[1]
+                                            vida_player = vida_player - ataque[1] + defesa
                                             if ataque[0] == 'mordida':
                                                 sangramento = True
                                                 vida_player -= 5
@@ -725,7 +774,7 @@ while True:
 
                                                 print(f'Vez do monstro atacar... Monstro está usando {ataque[0]} ({ataque[1]} de dano)')
                                                 time.sleep(3)
-                                                vida_player -= ataque[1]
+                                                vida_player = vida_player - ataque[1] + defesa
                                                 if ataque[0] == 'mordida':
                                                     sangramento = True
                                                     vida_player -= 5
@@ -742,23 +791,100 @@ while True:
                                         menu = True
                                         break
 
-                                    #fase 3
+                                    break
 
                                 if menu:
                                     break
-                                        
-                            if continuar[0] == 'n' or menu:
+                                    
+                                while True:
+
+                                    if os.name == 'nt':
+                                        os.system('cls')
+                                    else:
+                                        os.system('clear')
+
+                                    print('Você passou para a terceira fase do caminho do mal, parabéns!!')                   
+                                    
+                                    continuar = input('Pronto para o que há de vir? [S]im [N]ão ')
+                                    if not continuar.isalpha():
+                                        continue
+                                    continuar = continuar.lower()
+                                    if not continuar[0] in 'sn':
+                                        continue
+
+                                    while continuar[0] == 's':
+                                        if os.name == 'nt':
+                                            os.system('cls')
+                                        else:
+                                            os.system('clear')
+
+                                        moeda = random.randint(1,2)
+                                        if moeda == 1:
+                                            moeda = 'cara'
+                                        else: 
+                                            moeda = 'coroa'
+
+                                        escolha = input('Faça a escolha certa:'
+                                        '\nCara ou Coroa?\n')
+                                        if not escolha.isalpha():
+                                            continue
+                                        escolha = escolha.lower()
+                                        if not escolha in 'caracoroa':
+                                            continue
+                                        if os.name == 'nt':
+                                            os.system('cls')
+                                        else:
+                                            os.system('clear')
+
+                                        while escolha == moeda:
+                                            if os.name == 'nt':
+                                                os.system('cls')
+                                            else:
+                                                os.system('clear')
+                                            print('Parabéns, você ganhou o caminho do mal! \nJunto disso ganhou também uma conquista e perda de tempo de vida')
+                                            if not 'Caminho do mal' in conquistas:
+                                                conquistas.append('Caminho do mal')
+                                            if not passou:
+                                                if not 'first try' in conquistas:
+                                                    conquistas.append('first try')
+                                            passou = True
+                                            voltar = input('Deseja voltar ao menu?' \
+                                            '\n(Se "não" você sairá do jogo) ')
+                                            if not voltar.isalpha():
+                                                continue
+                                            voltar = voltar.lower()
+                                            if not voltar[0] in 'sn':
+                                                continue
+                                            if voltar[0] =='s':
+                                                menu = True
+                                                break
+                                            if voltar[0] =='n':
+                                                acabar = True
+                                                break
+
+                                        if moeda != escolha:
+                                            print('Você perdeu')
+                                            time.sleep(3)
+                                            menu = True
+                                            break
+                                        if menu or acabar:
+                                            break
+
+                                    if continuar[0] == 'n' or menu or acabar:
+                                        menu = True
+                                        break
+                                if continuar[0] == 'n' or menu or acabar:
+                                    menu = True
+                                    break
+                            if continuar[0] == 'n' or menu or acabar:
                                 menu = True
                                 break
-                                
-                if menu:
-                    break
-                if continuar[0] == 'n':
+                if continuar[0] == 'n' or menu or acabar:
                     menu = True
                     break
-            if menu:
+            if menu or acabar:
                 break
-        if continuar[0] == 'n' or menu:
+        if continuar[0] == 'n' or menu or acabar:
             break
     while caminho[0] == 'r':
         if os.name == "nt":
