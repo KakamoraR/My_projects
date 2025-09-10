@@ -1,9 +1,7 @@
-#tempo usado para a criação do código: 17:30h
+#tempo usado para a criação do código: 19:30h
 import requests
 import time
-
-url = "https://random-word-api.herokuapp.com/word?number=1"
-
+import palavras
 import random
 import os
 acabar = False
@@ -12,13 +10,14 @@ itens = [] #itens em geral
 uso = [] #Itens sendo usados
 dano_a_mais = 0 #dano de acordo com a arma
 defesa = 0 #defesa ganha de acordo com a armadura
+arma = ['excalibur', 'sabre de luz', 'espada']
+armadura = ['capacete', 'peitoral']
 
 while True:
     sorteado = random.randint(1,20)
     four_digit = random.randint(1000,9999)
     six_digit = random.randint(100000,999999)
     eight_digit = random.randint(10000000, 99999999)
-    resposta = requests.get(url)
     derrota = 0
     vitoria = 0
     empate = 0
@@ -95,14 +94,9 @@ while True:
                     print('Primeiro jogo... COMECE!!')
                     palavra_formada = ''
                     letras_acertadas = ''
-
+                    palavra_secreta = palavras.palavra_aleatoria().lower()
+                    
                     while True:
-
-                        if resposta.status_code == 200:
-                            palavra = resposta.json()[0]
-                        else:
-                            print("Erro ao acessar a API. Código:", resposta.status_code)
-                        palavra_secreta = palavra
 
                         letra_user = input('Digite uma letra ou a palavra secreta: ')
                         letra_user = letra_user.lower()
@@ -321,12 +315,15 @@ while True:
                         menu = True
                     elif vitoria >1:
                         while True:
-                            print('Parabéns, você ganhou o jogo do "bem" e ganhou uma conquista!! \n(A não ser que já tenha ganhado antes) \
-                                \nVeja sua conquista na opção "Conquistas"')
+                            print('Parabéns, você ganhou o jogo do bem e ganhou uma conquista e um item!! \n(A não ser que já tenha ganhado antes)')
                             
-                            if not 'Jogo "Bem" feito.' in conquistas:
-                                conquistas.append('Jogo "Bem" feito.')
-
+                            item = random.randint(1, 100)
+                            if item == 1 and not 'sabre de luz' in conquistas:
+                                itens.append('sabre de luz')
+                                conquistas.append('sabre de luz')
+                            if not 'Jogo "Bem" feito' in conquistas:
+                                conquistas.append('Jogo "Bem" feito')
+                                                                
                             continuar = input('Continuar? [S]im [N]ão \n(Se não, o jogo acabará / Se sim, o jogo voltará ao menu): ')
                             if not continuar.isalpha():
                                 if os.name == "nt":
@@ -602,25 +599,26 @@ while True:
                                         
                                         if vida_player <=0:
                                             print('Você perdeu')
+                                            time.sleep(2)
                                             menu = True
                                             break
 
                                         if vida_boss <= 0:
                                             print('O player derrotou os monstros!!')
                                             item = random.randint(1,50)
-                                            if item == 1 and not 'Espada' in itens:
-                                                conquistas.append('Espada')
-                                                itens.append('Espada')
-                                            elif item == 2 and not 'Excalibur' in itens:
-                                                conquistas.append('Excalibur')
-                                                itens.append('Excalibur')
-                                            elif item == 3 and not 'Armadura básica' in itens:
-                                                conquistas.append('Armadura básica')
-                                                itens.append('Armadura básica')
-                                            elif item == 4 and not 'Armadura lendária' in itens:
-                                                conquistas.append('Armadura lendária')
-                                                itens.append('Armadura lendária')
-                                            if 'Espada' in conquistas and 'Excalibur' in conquistas and 'Armadura básica' in conquistas and 'Armadura lendária' in conquistas and not 'Set completo' in conquistas:
+                                            if item == 1 and not 'espada' in itens:
+                                                conquistas.append('espada')
+                                                itens.append('espada')
+                                            elif item == 2 and not 'excalibur' in itens:
+                                                conquistas.append('excalibur')
+                                                itens.append('excalibur')
+                                            elif item == 3 and not 'capacete' in itens:
+                                                conquistas.append('capacete')
+                                                itens.append('capacete')
+                                            elif item == 4 and not 'peitoral' in itens:
+                                                conquistas.append('peitoral')
+                                                itens.append('peitoral')
+                                            if 'sabre de luz' in conquistas and 'espada' in conquistas and 'excalibur' in conquistas and 'capacete' in conquistas and 'peitoral' in conquistas and not 'Set completo' in conquistas:
                                                 conquistas.append('Set completo')
                                             break
 
@@ -628,10 +626,14 @@ while True:
                                         dado = random.randint(1,20)
                                         ataque = random.randint(1,3)
                         
-                                        if dado == 20 and 'Espada' in uso or 'Excalibur' in uso:
+                                        if (
+                                            (dado == 20 and 'espada' in uso) or 
+                                            (dado == 20 and 'excalibur' in uso) or
+                                            (dado == 20 and 'sabre de luz' in uso)
+                                        ):
                                             dano = 25 + dano_a_mais
                                         else:
-                                            dano = dado
+                                            dano = dado + dano_a_mais
                                         
                                         print(f'Ataque de player, jogando o dado...')
                                         time.sleep(1.5)
@@ -645,6 +647,7 @@ while True:
                                             else:
                                                 os.system('clear')
                                             print('Player está sangrando (-5)')
+                                            vida_player -= 5
                                             print(f'\nPlayer está com {vida_player} de vida')
                                             sangramento = False
                                             time.sleep(3)
@@ -674,16 +677,16 @@ while True:
                                                 os.system('clear')
 
                                             if ataque == 1:
-                                                ataque = ['ataque basico', ataque_basico]
+                                                ataque = ['mordida', ataque_basico]
                                             elif ataque == 2:
-                                                ataque = ['ataque secundario', ataque_secundario]
+                                                ataque = ['soco', ataque_secundario]
                                             elif ataque == 3:
-                                                ataque = ['ataque especial', ataque_especial]
+                                                ataque = ['espancada', ataque_especial]
                                             
                                             print(f'Vez do Boss atacar... Boss está usando {ataque[0]} ({ataque[1]} de dano)')
                                             time.sleep(3)
                                             vida_player -= ataque[1]
-                                            if ataque[0] == 'ataque basico':
+                                            if ataque[0] == 'mordida':
                                                 sangramento = True
                                                 vida_player -= 5
                                                 print('Player está sangrando (-5)')
@@ -716,14 +719,14 @@ while True:
                                                     os.system('clear')
                                                 
                                                 if ataque ==1:
-                                                    ataque = ['ataque basico', ataque_basico]
+                                                    ataque = ['mordida', ataque_basico]
                                                 else:
-                                                    ataque = ['ataque secundario', ataque_secundario]
+                                                    ataque = ['soco', ataque_secundario]
 
                                                 print(f'Vez do monstro atacar... Monstro está usando {ataque[0]} ({ataque[1]} de dano)')
                                                 time.sleep(3)
                                                 vida_player -= ataque[1]
-                                                if ataque[0] == 'ataque basico':
+                                                if ataque[0] == 'mordida':
                                                     sangramento = True
                                                     vida_player -= 5
                                                     print('Player está sangrando (-5)')
@@ -817,6 +820,28 @@ while True:
             os.system('clear')
         print(f'Bem vindo a aba de itens, atualmente você possui {len(itens)}.')
         print(itens)
+        equipar = input('Deseja equipar algum item?' \
+        '\n(Se sim, escrever o nome do item, se não, digite "não") ')
+        if not equipar.isalpha():
+            continue
+        equipar = equipar.lower()
+        if equipar in uso:
+            print('Item já está em uso')
+            time.sleep(3)
+            continue
+        elif equipar in armadura:
+            if uso:
+                uso.remove(uso[0])
+            uso.append(equipar)
+        elif equipar in arma:
+            if uso:
+                uso.remove(uso[0])
+            uso.append(equipar)
+        elif equipar[0] == 'n':
+            ...
+        else:
+            continue
+        print(f'Item em uso: {uso}')
         voltar = input('Digite "V" para voltar: ')
         if not voltar.isalpha():
             continue
