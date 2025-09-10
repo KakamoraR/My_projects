@@ -1,4 +1,4 @@
-#tempo usado para a criação do código: 19:30h
+#tempo usado para a criação do código: 19:45h
 import requests
 import time
 import palavras
@@ -827,6 +827,10 @@ while True:
         equipar = equipar.lower()
         if equipar in uso:
             print('Item já está em uso')
+            time.sleep(3)
+            continue
+        elif not equipar in itens:
+            print('Você não tem este item para poder usa-lo')
             time.sleep(3)
             continue
         elif equipar in armadura:
