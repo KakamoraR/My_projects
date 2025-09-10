@@ -45,7 +45,7 @@ while True:
         os.system('cls')
     else:
         os.system('clear')
-    print(record)
+    
     caminho=input('Escolha seu caminho: \n[B]em    ' \
     '[R]egras        ' \
     '[I]tens' \
