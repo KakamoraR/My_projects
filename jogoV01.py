@@ -7,7 +7,7 @@ import os
 acabar = False
 conquistas = [] 
 itens = [] #itens em geral
-uso = [] #Itens sendo usados
+uso = [''] #Itens sendo usados
 arma = ['excalibur', 'sabre de luz', 'espada']
 armadura = ['capacete', 'peitoral']
 passou = False
