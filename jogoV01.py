@@ -25,7 +25,7 @@ while True:
     dano_a_mais = 0
     defesa = 0
     ataque_basico = 10
-    ataque_secundario = 20
+    ataque_secundario = 12
     ataque_especial = 33
     menu = False
     next = False
