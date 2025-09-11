@@ -1,4 +1,4 @@
-#tempo usado para a criação do código: 22:45h
+#tempo usado para a criação do código: 23h
 import requests
 import time
 import palavras
@@ -12,6 +12,7 @@ arma = ['excalibur', 'sabre de luz', 'espada']
 armadura = ['capacete', 'peitoral']
 passou = False
 record = time.time()
+derrotado = False
 
 while True:
     sorteado = random.randint(1,20)
@@ -31,6 +32,15 @@ while True:
     sangramento = False
     erro = False
 
+    if derrotado:
+        if os.name == 'nt':
+            os.system('cls')
+        else:
+            os.system('clear')
+        derrotado = False
+        print('Você perdeu')
+        time.sleep(3)
+
     if len(conquistas) == 14:
         if not '100%' in conquistas:
             conquistas.append('100%')
@@ -38,8 +48,12 @@ while True:
     if '100%' in conquistas:
         parada = time.time()
         if parada - record <= 1800:
-            if not 'Platinado' in conquistas:
-                conquistas.append('Platinado')
+            if not 'Speedrunner' in conquistas:
+                conquistas.append('Speedrunner')
+    
+    if 'Speedrunner' in conquistas:
+        if not 'Platinado' in conquistas:
+            conquistas.append('platinado')
 
     if os.name == "nt":
         os.system('cls')
@@ -231,10 +245,7 @@ while True:
                                     conquistas.append('primeira tentativa')
                             break
                         if tentativa == 5:
-                            if os.name == "nt":
-                                os.system('cls')
-                            else:
-                                os.system('clear')
+                            derrotado = True
                             menu = True
                             break
                     if menu:
@@ -322,7 +333,6 @@ while True:
                             tentativa += 1
                             vitoria += 1
                         else:
-                            print("Você perdeu!")
                             tentativa +=1
                             derrota +=1
                         if vitoria==2 or derrota==2:
@@ -334,6 +344,7 @@ while True:
                         os.system('clear')
 
                     if derrota > 1:
+                        derrotado = True
                         menu = True
                     elif vitoria >1:
                         while True:
@@ -492,24 +503,24 @@ while True:
                                     num_user = input('Digite o número correto: ')
 
                                     if not num_user.isdigit():
-                                        print('Digite apenas números!!')
-                                        time.sleep(2)
                                         continue
                                     num_user = int(num_user)
                                     if num_user == four_digit or num_user == six_digit:
-                                        if os.name == 'nt':
-                                            os.system('cls')
-                                        else:
-                                            os.system('clear')
-                                        print('Parabéns, você passou para o próximo nível')
                                         nivel +=1
-                                        continuar = input('Pronto? [S]im [N]ão (Se não você voltará ao menu) ')
+                                        while True:
+                                            if os.name == 'nt':
+                                                os.system('cls')
+                                            else:
+                                                os.system('clear')
+                                            print('Parabéns, você passou para o próximo nível')
+                                            continuar = input('Pronto? [S]im [N]ão (Se não você voltará ao menu) ')
 
-                                        if not continuar.isalpha():
-                                            print('Faça uma escolha.')
-                                        continuar = continuar.lower()
-                                        if not continuar[0] in 'sn':
-                                            print('Faça uma escolha.')
+                                            if not continuar.isalpha():
+                                                continue
+                                            continuar = continuar.lower()
+                                            if not continuar[0] in 'sn':
+                                                continue
+                                            break
                                         if continuar[0] == 'n':
                                             menu = True
                                             break
@@ -539,6 +550,7 @@ while True:
                                         if menu:
                                             break
                                     else:
+                                        derrotado = True
                                         menu = True
                                         break
                                     if next:
@@ -643,8 +655,7 @@ while True:
                                                 dano_a_mais = 0
                                         
                                         if vida_player <=0:
-                                            print('Você perdeu')
-                                            time.sleep(2)
+                                            derrotado = True
                                             menu = True
                                             break
 
@@ -863,8 +874,7 @@ while True:
                                                 break
 
                                         if moeda != escolha:
-                                            print('Você perdeu')
-                                            time.sleep(3)
+                                            derrotado = True
                                             menu = True
                                             break
                                         if menu or acabar:
