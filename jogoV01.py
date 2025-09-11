@@ -333,6 +333,7 @@ while True:
                             tentativa += 1
                             vitoria += 1
                         else:
+                            print('Você Perdeu')
                             tentativa +=1
                             derrota +=1
                         if vitoria==2 or derrota==2:
@@ -904,8 +905,12 @@ while True:
         print('Para deixar mais claro, esse jogo possui algumas regras e explicações:\n' \
         '\n1 - Acaso perder algum desafio, o jogo te trará para o menu.' \
         '\n2 - O nível do bem é mais fácil do que o nível do mal, \napesar disso, você dependerá MUITO da sua sorte para passar.' \
-        '\n3 - A primeira fase do nível do bem está usando palavras em \ninglês.' \
-        '\n4 - É possível "Platinar" o jogo.')
+        '\n3 - Você pode ganhar itens que te ajudarão a derrotar os monstros\nNo caminho do mal.' \
+        '\n4 - É possível "Platinar" o jogo, enquanto isso, o tempo corre.' \
+        '\n5 - O final do caminho do mal é desagradável.' \
+        '\n6 - Há 17 conquistas no tal.' \
+        '\n7 - Há uma conquista por fase, menos a primeria fase do mal.' \
+        '\n8 - A chance de você conseguir todas as conqusitas do RPG\nÉ de 0,00000016... Boa sorte!')
         voltar = input('\nDigite "V" para voltar: ')
         if not voltar.isalpha():
             continue
@@ -965,11 +970,11 @@ while True:
             ...
         elif equipar in uso:
             print('Item já está em uso')
-            time.sleep(3)
+            time.sleep(2)
             continue
         elif not equipar in itens:
             print('Você não tem este item para poder usa-lo')
-            time.sleep(3)
+            time.sleep(2)
             continue
         elif equipar in armadura:
             if uso:
