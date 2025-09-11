@@ -8,7 +8,7 @@ acabar = False
 conquistas = [] 
 itens = [] #itens em geral
 uso = [''] #Itens sendo usados
-arma = ['excalibur', 'sabre de luz', 'espada']
+arma = ['excalibur', 'sabre', 'espada']
 armadura = ['capacete', 'peitoral']
 passou = False
 record = time.time()
@@ -355,10 +355,10 @@ while True:
                                     conquistas.append('achei fácil')
 
                             item = random.randint(1, 100)
-                            if item == 1 and not 'sabre de luz' in conquistas:
-                                itens.append('sabre de luz')
-                                conquistas.append('sabre de luz')
-                                if 'sabre de luz' in conquistas and 'espada' in conquistas and 'excalibur' in conquistas and 'capacete' in conquistas and 'peitoral' in conquistas and not 'Set completo' in conquistas:
+                            if item == 1 and not 'sabre' in conquistas:
+                                itens.append('sabre')
+                                conquistas.append('sabre')
+                                if 'sabre' in conquistas and 'espada' in conquistas and 'excalibur' in conquistas and 'capacete' in conquistas and 'peitoral' in conquistas and not 'Set completo' in conquistas:
                                     conquistas.append('Set completo')
                             if not 'Jogo "Bem" feito' in conquistas:
                                 conquistas.append('Jogo "Bem" feito')
@@ -649,7 +649,7 @@ while True:
                                                 dano_a_mais = 5
                                             elif uso[0] == 'espada':
                                                 dano_a_mais = 3
-                                            elif uso[0] == 'sabre de luz':
+                                            elif uso[0] == 'sabre':
                                                 dano_a_mais = 10
                                             else:
                                                 dano_a_mais = 0
@@ -678,7 +678,7 @@ while True:
                                             elif item == 4 and not 'peitoral' in itens:
                                                 conquistas.append('peitoral')
                                                 itens.append('peitoral')
-                                            if 'sabre de luz' in conquistas and 'espada' in conquistas and 'excalibur' in conquistas and 'capacete' in conquistas and 'peitoral' in conquistas and not 'Set completo' in conquistas:
+                                            if 'sabre' in conquistas and 'espada' in conquistas and 'excalibur' in conquistas and 'capacete' in conquistas and 'peitoral' in conquistas and not 'Set completo' in conquistas:
                                                 conquistas.append('Set completo')
                                             break
 
