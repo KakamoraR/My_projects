@@ -1,4 +1,4 @@
-#tempo usado para a criação do código: 23h
+#tempo usado para a criação do código: 23:15h
 import requests
 import time
 import palavras
@@ -961,7 +961,9 @@ while True:
         if not equipar.isalpha():
             continue
         equipar = equipar.lower()
-        if equipar in uso:
+        if equipar[0] == 'n':
+            ...
+        elif equipar in uso:
             print('Item já está em uso')
             time.sleep(3)
             continue
@@ -977,8 +979,6 @@ while True:
             if uso:
                 uso.remove(uso[0])
             uso.append(equipar)
-        elif equipar[0] == 'n':
-            ...
         else:
             continue
         print(f'Item em uso: {uso}')
