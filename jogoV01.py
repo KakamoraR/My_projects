@@ -1,4 +1,4 @@
-#tempo usado para a criação do código: 23:15h
+#tempo usado para a criação do código: 24h
 import requests
 import time
 import palavras
