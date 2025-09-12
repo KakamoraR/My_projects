@@ -914,7 +914,25 @@ while True:
         '\n5 - O final do caminho do mal é desagradável.' \
         '\n6 - Há 17 conquistas no tal.' \
         '\n7 - Há uma conquista por fase, menos a primeria fase do mal.' \
-        '\n8 - A chance de você conseguir todas as conqusitas do RPG\nÉ de 0,00000016... Boa sorte!')
+        '\n8 - A chance de você conseguir todas as conqusitas do RPG\nÉ de 0,00000016... Boa sorte!' \
+        '\n\nVeja como adquirir as conquistas:' \
+        '\n\nPlatinado - Adquira todas as conquistas (*CONQUISTA PERDÍVEL*)' \
+        '\n\n100% - Complete o jogo 100% (todas as conquistas, exceto Platinado e Speedrunner) (*CONQUISTA PERDÍVEL*)' \
+        '\nSpeedrunner - Adquira a conquista 100% entro de 30 minutos desde o novo jogo (*CONQUISTA PERDÍVEL*)' \
+        '\n\nNo Pain, No Gain - Durante a Fase 1 do Caminho do Bem, não erre nenhuma letra' \
+        '\nPrimeira Tentativa - Durante a Fase 2 do Caminho do Bem, acerte o número na primeira tentativa' \
+        '\nAchei Fácil - Durante a Fase 3 do Caminho do Bem, adquira apenas 2 vitórias, sem empates e derrotas' \
+        '\nJogo "Bem" Feito - Conclua o Caminho do Bem' \
+        '\n\nNem Senti - Durante a Fase 2 do Caminho do Mal, mate o chefe sobrando mais de 50 pontos de vida' \
+        '\nVinte Natural - Durante a Fase 2 do Caminho do Mal, role um 20 no dano' \
+        '\nCaminho do Mal - Conclua o Caminho do Mal' \
+        '\nFirst Try - Complete o Caminho do Mal na primeira tentativa (desde um novo jogo) (*CONQUISTA PERDÍVEL*)' \
+        '\n\nSabre - Adquira o Sabre (1% de chance após concluir o Caminho do Bem)' \
+        '\nEspada - Adquira a Espada (2% de chance após concluir o Caminho do Mal)' \
+        '\nExcalibur - Adquira a Excalibur (2% de chance após concluir o Caminho do Mal)' \
+        '\nCapacete - Adquira a Capacete (2% de chance após concluir o Caminho do Mal)' \
+        '\nPeitoral - Adquira a Peitoral (2% de chance após concluir o Caminho do Mal)' \
+        '\nSet Completo - Adquira todos os equipamentos (Sabre, Espada, Excalibur, Capacete e Peitoral)')
         voltar = input('\nDigite "V" para voltar: ')
         if not voltar.isalpha():
             continue
