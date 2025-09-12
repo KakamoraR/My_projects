@@ -543,6 +543,7 @@ while True:
                     if next:
                         next = False
                         while True:
+                            enuma = False
                             vida_player = 100
                             vida_monstro = 30
                             vida_boss = 70
@@ -627,9 +628,9 @@ while True:
                                                 defesa = 0
                                         elif uso[0] in arma:
                                             if uso[0] == 'excalibur':
-                                                dano_a_mais = 5
+                                                dano_a_mais = 7
                                             elif uso[0] == 'espada':
-                                                dano_a_mais = 3
+                                                dano_a_mais = 4
                                             elif uso[0] == 'sabre':
                                                 dano_a_mais = 10
                                             else:
@@ -672,7 +673,10 @@ while True:
                                                 conquistas.append('vinte natural')
                         
                                         if uso[0] in arma and dado == 20:
-                                            dano = 25 + dano_a_mais
+                                            if 'excalibur' in uso[0]:
+                                                enuma = True
+                                            else:
+                                                dano = 25 + dano_a_mais
                                         else:
                                             dano = dado + dano_a_mais
                                         
@@ -680,8 +684,18 @@ while True:
                                         time.sleep(1.5)
                                         print(dado)
                                         time.sleep(1.5)
-                                        print(f'player deu {dano} de dano!')
-                                        time.sleep(3)
+                                        if enuma:
+                                            if not 'Gilga reference' in conquistas:
+                                                conquistas.append('Gilga reference')
+                                            print('player sente um poder surgir...')
+                                            time.sleep(2)
+                                            print('Player - "Enuma... Eilish!"')
+                                            time.sleep(2)
+                                            print('Um grande raio atinge o monstro dando hitkill')
+                                            time.sleep(2)
+                                        else:
+                                            print(f'player deu {dano} de dano!')
+                                            time.sleep(3)
                                         if sangramento:
                                             if os.name == 'nt':
                                                 os.system('cls')
@@ -689,10 +703,10 @@ while True:
                                                 os.system('clear')
                                             print('Player está sangrando (-5)')
                                             vida_player -= 5
-                                            print(f'\nPlayer está com {vida_player} de vida')
+                                            print(f'Player está com {vida_player} de vida')
                                             sangramento = False
                                             time.sleep(3)
-
+                                        
                                         if not vida_monstro <=0:
                                             vida_monstro -= dano
                                         elif vida_boss <=0:
@@ -710,7 +724,12 @@ while True:
                                         if monstro_atual:
                                             if vida_boss <=0:
                                                 continue
+                                            if enuma:
+                                                vida_boss = 0
                                             print(f'O Boss está com {vida_boss} de vida')
+                                            if enuma:
+                                                enuma = False
+                                                continue
                                             time.sleep(3)
                                             if os.name == 'nt':
                                                 os.system('cls')
@@ -752,8 +771,13 @@ while True:
                                                     vida_player += 15
                                                 time.sleep(3)
                                             else:
+                                                if enuma:
+                                                    vida_monstro = 0
                                                 print(f'O monstro está com {vida_monstro} de vida')
                                                 time.sleep(3)
+                                                if enuma:
+                                                    enuma = False
+                                                    continue
                                                 if os.name == 'nt':
                                                     os.system('cls')
                                                 else:
