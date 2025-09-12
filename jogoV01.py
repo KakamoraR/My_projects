@@ -349,13 +349,13 @@ while True:
                         menu = True
                     elif vitoria >1:
                         while True:
-                            print('Parabéns, você ganhou o jogo do bem e ganhou uma conquista e um item!! \n(A não ser que já tenha ganhado antes)')
+                            print('Parabéns, você ganhou o jogo do bem e ganhou uma conquista!! \n(A não ser que já tenha ganhado antes)')
                             
                             if vitoria == 2 and empate == 0 and derrota == 0:
                                 if not 'achei fácil' in conquistas:
                                     conquistas.append('achei fácil')
 
-                            item = random.randint(1, 100)
+                            item = random.randint(1, 30)
                             if item == 1 and not 'sabre' in conquistas:
                                 itens.append('sabre')
                                 conquistas.append('sabre')
@@ -381,30 +381,10 @@ while True:
                                 menu = True
                                 break
                             if continuar[0] == 'n':
-                                while continuar[0] == 'n':
-                                    if os.name == "nt":
-                                        os.system('cls')
-                                    else:
-                                        os.system('clear')
-                                    continuar = input('Deseja sair mesmo: [S]im [N]ão ')
-                                    if not continuar.isalpha():
-                                        continue
-                                    continuar = continuar.lower()
-                                    if ' ' in continuar or not continuar[0] in 'sn':
-                                        continue
-                                    if continuar[0] == 's':
-                                        acabar = True
-                                        break
-                                    if continuar[0] == 'n':
-                                        if os.name == "nt":
-                                            os.system('cls')
-                                        else:
-                                            os.system('clear')
-                                        break
-                                    
-                                if acabar == True:
-                                    break
-
+                                menu = True
+                                break
+                        if menu:
+                            break
                     break
                 
                 if continuar[0] == 'n':
