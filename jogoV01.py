@@ -647,7 +647,7 @@ while True:
                                                 if not 'nem senti' in conquistas:
                                                     conquistas.append('nem senti')
                                             time.sleep(3)
-                                            item = random.randint(1,50)
+                                            item = random.randint(1,20)
                                             if item == 1 and not 'espada' in itens:
                                                 conquistas.append('espada')
                                                 itens.append('espada')
