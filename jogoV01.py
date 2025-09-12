@@ -41,7 +41,7 @@ while True:
         print('Você perdeu')
         time.sleep(3)
 
-    if len(conquistas) == 14:
+    if len(conquistas) == 15:
         if not '100%' in conquistas:
             conquistas.append('100%')
 
