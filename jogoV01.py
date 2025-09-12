@@ -381,9 +381,9 @@ while True:
                                 menu = True
                                 break
                             if continuar[0] == 'n':
-                                menu = True
+                                acabar = True
                                 break
-                        if menu:
+                        if acabar:
                             break
                     break
                 
@@ -969,10 +969,6 @@ while True:
         if ' ' in continuar or not continuar[0] in 'sn':
             continue
         if continuar[0] == 's':
-            if os.name == "nt":
-                os.system('cls')
-            else:
-                os.system('clear')
             acabar = True
             break
         if continuar[0] == 'n':
@@ -1019,4 +1015,8 @@ while True:
         else:
             break
     if acabar:
+        if os.name == 'nt':
+            os.system('cls')
+        else:
+            os.systen('clear')
         break
