@@ -925,13 +925,14 @@ while True:
         '\nJogo "Bem" Feito - Conclua o Caminho do Bem' \
         '\n\nNem Senti - Durante a Fase 2 do Caminho do Mal, mate o chefe sobrando mais de 50 pontos de vida' \
         '\nVinte Natural - Durante a Fase 2 do Caminho do Mal, role um 20 no dano' \
+        '\nGilga reference - Acerte um crítico usando a excalibur' \
         '\nCaminho do Mal - Conclua o Caminho do Mal' \
         '\nFirst Try - Complete o Caminho do Mal na primeira tentativa (desde um novo jogo) (*CONQUISTA PERDÍVEL*)' \
-        '\n\nSabre - Adquira o Sabre (1% de chance após concluir o Caminho do Bem)' \
-        '\nEspada - Adquira a Espada (2% de chance após concluir o Caminho do Mal)' \
-        '\nExcalibur - Adquira a Excalibur (2% de chance após concluir o Caminho do Mal)' \
-        '\nCapacete - Adquira a Capacete (2% de chance após concluir o Caminho do Mal)' \
-        '\nPeitoral - Adquira a Peitoral (2% de chance após concluir o Caminho do Mal)' \
+        '\n\nSabre - Adquira o Sabre após concluir o Caminho do Bem' \
+        '\nEspada - Adquira a Espada após concluir a luta contra os monstros' \
+        '\nExcalibur - Adquira a Excalibur após concluir a luta contra os monstros' \
+        '\nCapacete - Adquira a Capacete após concluir a luta contra os monstros' \
+        '\nPeitoral - Adquira a Peitoral após concluir a luta contra os monstros' \
         '\nSet Completo - Adquira todos os equipamentos (Sabre, Espada, Excalibur, Capacete e Peitoral)')
         voltar = input('\nDigite "V" para voltar: ')
         if not voltar.isalpha():
