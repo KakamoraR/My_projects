@@ -1,5 +1,4 @@
 #tempo usado para a criação do código: 24h
-import requests
 import time
 import palavras
 import random
