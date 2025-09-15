@@ -99,7 +99,7 @@ while True:
                 print(
                     'Continuaremos para o jogo, serão 3 partes:\n' \
                     '\nFase 1 - Descubra a palavra;' \
-                    '\nFase 2 - Adivinhe o número em 10 tentativas;' \
+                    '\nFase 2 - Adivinhe o número em 5 tentativas;' \
                     '\nFase 3 - Me ganhe em um pedra, papel, tesoura.\n'
                 )
 
