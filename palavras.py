@@ -29,7 +29,7 @@ palavra = [
     "Bombeiro", "Soldado", "Rei", "Rainha", "Principe", "Princesa", "Heroi", "Vilao", "Monstro",
     "Dragao", "Fantasma", "Alien", "Robot", "Cyborg", "Computador", "Codigo", "Bug", "Erro",
     "Acerto", "Teste", "Versao", "Atualizacao", "Backup", "Arquivo", "Pasta", "Documento",
-    "Imagem", "Video", "Audio", "Texto", "Frase", "Palavra", "Letra", "Numero", "Simbolo",
+    "Imagem", "Video", "Audio", "Texto", "Frase", "caminhao", "Letra", "Numero", "Simbolo",
     "Chave", "Porta", "Janela", "Parede", "Teto", "Chao", "Quarto", "Sala", "Cozinha", "Banheiro",
     "Garagem", "Quintal", "Varanda", "Elevador", "Escada", "Corredor", "Portao", "Muro",
     "Ferias", "Trabalho", "Estudo", "Exercicio", "Treino", "Corrida", "Nado", "Pedalada",
