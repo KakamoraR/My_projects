@@ -18,7 +18,7 @@ palavra = [
     "Codigo", "Programa", "Sistema", "Aplicativo", "Jogo", "Internet", "Rede", "Servidor",
     "Usuario", "Senha", "Conta", "Dinheiro", "Moeda", "Nota", "Cartao", "Credito", "Debito",
     "Compra", "Venda", "Produto", "Servico", "Cliente", "Fornecedor", "Empresa", "Industria",
-    "Comercio", "Loja", "Supermercado", "Padaria", "Restaurante", "Lanchonete", "Cafe", "Chá",
+    "Comercio", "Loja", "Supermercado", "Padaria", "Restaurante", "Lanchonete", "Cafe", "Cha",
     "Suco", "Agua", "Refrigerante", "Cerveja", "Vinho", "Whisky", "Vodka", "Rum", "Tequila",
     "Pizza", "Hamburguer", "Sanduiche", "Arroz", "Feijao", "Carne", "Frango", "Peixe", "Ovo",
     "Batata", "Tomate", "Cenoura", "Abobora", "Laranja", "Maca", "Banana", "Uva", "Manga",
