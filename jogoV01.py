@@ -950,7 +950,8 @@ while True:
         else:
             os.system('clear')
         print(f'Bem vindo a aba de conquistas, atualmente você possui {len(conquistas)}.')
-        print(conquistas)
+        for quant, conq in enumerate(conquistas):
+            print(quant+1, conq)
         voltar = input('Digite "V" para voltar: ')
         if not voltar.isalpha():
             continue
@@ -981,8 +982,9 @@ while True:
         else:
             os.system('clear')
         print(f'Bem vindo a aba de itens, atualmente você possui {len(itens)}.')
-        print(itens)
-        equipar = input('Deseja equipar algum item?' \
+        for numeros, material in enumerate(itens):
+            print(f'\n{numeros+1, material}')
+        equipar = input('\nDeseja equipar algum item?' \
         '\n(Se sim, escrever o nome do item, se não, digite "não") ')
         if not equipar.isalpha():
             continue
@@ -1007,7 +1009,7 @@ while True:
             uso.append(equipar)
         else:
             continue
-        print(f'Item em uso: {uso}')
+        print(f'Item em uso: {uso[0]}')
         voltar = input('Digite "V" para voltar: ')
         if not voltar.isalpha():
             continue
