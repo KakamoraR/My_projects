@@ -289,12 +289,11 @@ while True:
                     print('O jogo agora será jankenpon melhor de 3. \n(Escreva ou "Pedra", ou "Papel", ou "Tesoura")')
 
                     while tentativa <3:
-                        opcao = {
-                            1: 'pedra',
-                            2: 'papel',
-                            3: 'tesoura'
-                        }
-                        escolha = random.randint(1,3)
+
+                        verificacao = False
+
+                        opcao = ['pedra','papel','tesoura']
+                        escolha = random.randint(0,2)
                         jankenpon = opcao[escolha]
 
                         player = input(f'prepare-se...3...2...1... Jogue!!: ')
@@ -305,15 +304,17 @@ while True:
                                 os.system('clear')
                             print('Escreva "Pedra", ou "Papel", ou "Tesoura"!')
                             continue
-                        if len(player) <5:
+                        player = player.lower()
+                        for jogada in opcao:
+                            if player == jogada:
+                                verificacao = True
+                        if not verificacao:
                             if os.name == "nt":
                                 os.system('cls')
                             else:
                                 os.system('clear')
                             print('Escreva "Pedra", ou "Papel", ou "Tesoura"!')
                             continue
-
-                        player = player.lower()
 
                         if os.name == "nt":
                             os.system('cls')
