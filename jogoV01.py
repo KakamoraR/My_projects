@@ -12,6 +12,7 @@ armadura = ['capacete', 'peitoral']
 passou = False
 record = time.time()
 derrotado = False
+pity = 0
 
 while True:
     sorteado = random.randint(1,20)
@@ -355,7 +356,9 @@ while True:
                                     conquistas.append('achei fácil')
 
                             item = random.randint(1, 30)
-                            if item == 1 and not 'sabre' in conquistas:
+                            
+                            pity += 1
+                            if item == 1 and not 'sabre' in conquistas or pity == 15 and not 'sabre' in conquistas:
                                 itens.append('sabre')
                                 conquistas.append('sabre')
                                 if 'sabre' in conquistas and 'espada' in conquistas and 'excalibur' in conquistas and 'capacete' in conquistas and 'peitoral' in conquistas and not 'Set completo' in conquistas:
