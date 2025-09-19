@@ -13,7 +13,7 @@ palavra = [
     "Paciente", "Exame", "Sangue", "Coracao", "Cerebro", "Corpo", "Pele", "Olho", "Boca", "Nariz",
     "Orelha", "Perna", "Braco", "Mao", "Pedal", "Dedo", "Unha", "Cabelo", "Barba", "Bigode",
     "Camisa", "Calca", "Sapato", "Chinelo", "Vestido", "Saia", "Short", "Jaqueta", "Blusa",
-    "Meia", "Chapeu", "Boné", "Relogio", "Oculos", "Colar", "Anel", "Pulseira", "Brinco",
+    "Meia", "Chapeu", "Bone", "Relogio", "Oculos", "Colar", "Anel", "Pulseira", "Brinco",
     "Lapis", "Borracha", "Regua", "Caderno", "Agenda", "Relatorio", "Trabalho", "Projeto",
     "Codigo", "Programa", "Sistema", "Aplicativo", "Jogo", "Internet", "Rede", "Servidor",
     "Usuario", "Senha", "Conta", "Dinheiro", "Moeda", "Nota", "Cartao", "Credito", "Debito",
