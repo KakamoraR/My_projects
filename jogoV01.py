@@ -916,7 +916,6 @@ while True:
         '\n5 - O final do caminho do mal é desagradável.' \
         '\n6 - Há 17 conquistas no tal.' \
         '\n7 - Há uma conquista por fase, menos a primeria fase do mal.' \
-        '\n8 - A chance de você conseguir todas as conqusitas do RPG\nÉ de 0,00000016... Boa sorte!' \
         '\n\nVeja como adquirir as conquistas:' \
         '\n\nPlatinado - Adquira todas as conquistas (*CONQUISTA PERDÍVEL*)' \
         '\n\n100% - Complete o jogo 100% (todas as conquistas, exceto Platinado e Speedrunner) (*CONQUISTA PERDÍVEL*)' \
