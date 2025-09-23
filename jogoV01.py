@@ -5,7 +5,7 @@ import random
 import os
 acabar = False
 conquistas = [] 
-itens = [] #itens em geral
+itens = ['peitoral', 'espada', 'sabre', 'capacete'] #itens em geral
 uso = ['',''] #Itens sendo usados
 arma = ['excalibur', 'sabre', 'espada']
 armadura = ['capacete', 'peitoral', 'refletor']
@@ -1026,15 +1026,9 @@ while True:
             time.sleep(2)
             continue
         elif equipar in armadura:
-            if uso[0]:
-                uso.remove(uso[0])
-            uso.insert(0, equipar)
+            uso[0] = equipar
         elif equipar in arma:
-            if uso[1]:
-                uso.remove(uso[1])
-            uso.insert(1, equipar)
-        else:
-            continue
+            uso[1] = equipar
         print(f'Item em uso: {uso[0:2]}')
         time.sleep(2)
     if acabar:
