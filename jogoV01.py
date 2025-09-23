@@ -1,4 +1,4 @@
-#tempo usado para a criação do código: 24h
+#tempo usado para a criação do código: 25h
 import time
 import palavras
 import random
@@ -8,7 +8,7 @@ conquistas = []
 itens = [] #itens em geral
 uso = [''] #Itens sendo usados
 arma = ['excalibur', 'sabre', 'espada']
-armadura = ['capacete', 'peitoral']
+armadura = ['capacete', 'peitoral', 'refletor']
 passou = False
 record = time.time()
 derrotado = False
@@ -40,6 +40,11 @@ while True:
         derrotado = False
         print('Você perdeu')
         time.sleep(3)
+
+    item = random.randint(1,500)
+    if item == 500:
+        if not 'refletor' in itens:
+            itens.append('refletor')
 
     if len(conquistas) == 15:
         if not '100%' in conquistas:
@@ -547,6 +552,7 @@ while True:
                         next = False
                         while True:
                             enuma = False
+                            refletor = False
                             vida_player = 100
                             vida_monstro = 30
                             vida_boss = 70
@@ -627,6 +633,8 @@ while True:
                                                 defesa = 4
                                             elif uso[0] == 'peitoral':
                                                 defesa = 7
+                                            elif uso[0] == 'refletor':
+                                                refletor = True
                                             else:
                                                 defesa = 0
                                         elif uso[0] in arma:
@@ -748,8 +756,14 @@ while True:
                                             
                                             print(f'Vez do Boss atacar... Boss está usando {ataque[0]} ({ataque[1]} de dano)')
                                             time.sleep(3)
-                                            vida_player = vida_player - ataque[1] + defesa
-                                            if ataque[0] == 'mordida':
+                                            if refletor:
+                                                vida_boss = vida_boss - ataque[1]
+                                                print(f'O ataque foi refletido, o boss tomou seu próprio ataque.' \
+                                                f'\nO boss está com {vida_boss} de vida')
+                                                time.sleep(3)
+                                            else:
+                                                vida_player = vida_player - ataque[1] + defesa
+                                            if ataque[0] == 'mordida' and not refletor:
                                                 sangramento = True
                                                 vida_player -= 5
                                                 print('Player está sangrando (-5)')
@@ -758,8 +772,9 @@ while True:
                                                 os.system('cls')
                                             else:
                                                 os.system('clear')
-                                            print(f'Player está com {vida_player} de vida')
-                                            time.sleep(3)
+                                            if not refletor:
+                                                print(f'Player está com {vida_player} de vida')
+                                                time.sleep(3)
                                                                  
                                         else:
                                             if vida_monstro <=0:
@@ -793,18 +808,25 @@ while True:
 
                                                 print(f'Vez do monstro atacar... Monstro está usando {ataque[0]} ({ataque[1]} de dano)')
                                                 time.sleep(3)
-                                                vida_player = vida_player - ataque[1] + defesa
-                                                if ataque[0] == 'mordida':
+                                                if refletor:
+                                                    vida_monstro = vida_monstro - ataque[1]
+                                                    print(f'O ataque foi refletido, o monstro tomou seu próprio ataque.' \
+                                                    f'\nO monstro está com {vida_monstro} de vida')
+                                                    time.sleep(3)
+                                                else:
+                                                    vida_player = vida_player - ataque[1] + defesa
+                                                if ataque[0] == 'mordida' and not refletor:
                                                     sangramento = True
                                                     vida_player -= 5
                                                     print('Player está sangrando (-5)')
+                                                    time.sleep(3)
                                                 if os.name == 'nt':
                                                     os.system('cls')
                                                 else:
                                                     os.system('clear')
-
-                                                print(f'Player está com {vida_player} de vida')
-                                                time.sleep(3)                                    
+                                                if not refletor:
+                                                    print(f'Player está com {vida_player} de vida')
+                                                    time.sleep(3)                                    
                                         
                                     if continuar[0] == 'n' or menu:
                                         menu = True
