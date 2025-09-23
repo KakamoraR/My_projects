@@ -1036,7 +1036,7 @@ while True:
         else:
             continue
         print(f'Item em uso: {uso[0:2]}')
-        time.sleep(3)
+        time.sleep(2)
     if acabar:
         if os.name == 'nt':
             os.system('cls')
