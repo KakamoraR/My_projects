@@ -5,8 +5,8 @@ import random
 import os
 acabar = False
 conquistas = [] 
-itens = [] #itens em geral
-uso = [''] #Itens sendo usados
+itens = ['peitoral', 'espada', 'sabre', 'capacete'] #itens em geral
+uso = ['',''] #Itens sendo usados
 arma = ['excalibur', 'sabre', 'espada']
 armadura = ['capacete', 'peitoral', 'refletor']
 passou = False
@@ -637,7 +637,7 @@ while True:
                                                 refletor = True
                                             else:
                                                 defesa = 0
-                                        elif uso[0] in arma:
+                                        if uso[1] in arma:
                                             if uso[0] == 'excalibur':
                                                 dano_a_mais = 7
                                             elif uso[0] == 'espada':
@@ -1007,39 +1007,36 @@ while True:
         for numeros, material in enumerate(itens):
             print(f'{numeros+1} "{material}"')
         equipar = input('\nDeseja equipar algum item?' \
-        '\n(Se sim, escrever o nome do item, se não, digite "não") ')
+        '\n(Digite "não" para voltar ao menu, ou "limpar" para desequipar os itens) ')
         if not equipar.isalpha():
             continue
         equipar = equipar.lower()
         if equipar[0] == 'n':
-            ...
+            break
+        elif equipar[0] == 'l':
+            uso.clear()
+            uso.insert(0, '')
+            uso.insert(1, '')
         elif equipar in uso:
             print('Item já está em uso')
             time.sleep(2)
             continue
         elif not equipar in itens:
-            print('Você não tem este item para poder usa-lo')
+            print('Você não tem este item para poder usa-lo ou item não existe')
             time.sleep(2)
             continue
         elif equipar in armadura:
-            if uso:
+            if uso[0]:
                 uso.remove(uso[0])
-            uso.append(equipar)
+            uso.insert(0, equipar)
         elif equipar in arma:
-            if uso:
-                uso.remove(uso[0])
-            uso.append(equipar)
+            if uso[1]:
+                uso.remove(uso[1])
+            uso.insert(1, equipar)
         else:
             continue
-        print(f'Item em uso: {uso[0]}')
-        voltar = input('Digite "V" para voltar: ')
-        if not voltar.isalpha():
-            continue
-        voltar = voltar.lower()
-        if not voltar[0] in 'v':
-            continue
-        else:
-            break
+        print(f'Item em uso: {uso[0:2]}')
+        time.sleep(3)
     if acabar:
         if os.name == 'nt':
             os.system('cls')
