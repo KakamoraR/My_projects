@@ -5,7 +5,7 @@ import random
 import os
 acabar = False
 conquistas = [] 
-itens = ['peitoral', 'espada', 'sabre', 'capacete'] #itens em geral
+itens = [] #itens em geral
 uso = ['',''] #Itens sendo usados
 arma = ['excalibur', 'sabre', 'espada']
 armadura = ['capacete', 'peitoral', 'refletor']
