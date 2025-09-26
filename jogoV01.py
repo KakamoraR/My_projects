@@ -41,18 +41,13 @@ while True:
         print('Você perdeu')
         time.sleep(3)
 
-    item = random.randint(1,500)
-    if item == 500:
-        if not 'refletor' in itens:
-            itens.append('refletor')
-
     if len(conquistas) == 15:
         if not '100%' in conquistas:
             conquistas.append('100%')
 
     if '100%' in conquistas:
         parada = time.time()
-        if parada - record <= 1800:
+        if parada - record <=1800:
             if not 'Speedrunner' in conquistas:
                 conquistas.append('Speedrunner')
     
@@ -72,6 +67,11 @@ while True:
     '[C]onquistas    ' \
     '[S]air' \
     '\n(Acaso tenha ganhado algum, selecione o outro): ')
+
+    item = random.randint(1,500)
+    if item == 500 or caminho == 'udrl':
+        if not 'refletor' in itens:
+            itens.append('refletor')
 
     if not caminho.isalpha():
         continue
