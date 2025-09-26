@@ -638,11 +638,11 @@ while True:
                                             else:
                                                 defesa = 0
                                         if uso[1] in arma:
-                                            if uso[0] == 'excalibur':
+                                            if uso[1] == 'excalibur':
                                                 dano_a_mais = 7
-                                            elif uso[0] == 'espada':
+                                            elif uso[1] == 'espada':
                                                 dano_a_mais = 4
-                                            elif uso[0] == 'sabre':
+                                            elif uso[1] == 'sabre':
                                                 dano_a_mais = 10
                                             else:
                                                 dano_a_mais = 0
@@ -683,8 +683,8 @@ while True:
                                             if not 'vinte natural' in conquistas:
                                                 conquistas.append('vinte natural')
                         
-                                        if uso[0] in arma and dado == 20:
-                                            if 'excalibur' in uso[0]:
+                                        if uso[1] in arma and dado == 20:
+                                            if 'excalibur' in uso[1]:
                                                 enuma = True
                                             else:
                                                 dano = 25 + dano_a_mais
