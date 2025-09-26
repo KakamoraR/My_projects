@@ -53,7 +53,7 @@ while True:
     
     if 'Speedrunner' in conquistas:
         if not 'Platinado' in conquistas:
-            conquistas.append('platinado')
+            conquistas.append('Platinado')
 
     if os.name == "nt":
         os.system('cls')
