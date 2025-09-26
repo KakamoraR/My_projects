@@ -638,11 +638,11 @@ while True:
                                             else:
                                                 defesa = 0
                                         if uso[1] in arma:
-                                            if uso[1] == 'excalibur':
+                                            if uso[0] == 'excalibur':
                                                 dano_a_mais = 7
-                                            elif uso[1] == 'espada':
+                                            elif uso[0] == 'espada':
                                                 dano_a_mais = 4
-                                            elif uso[1] == 'sabre':
+                                            elif uso[0] == 'sabre':
                                                 dano_a_mais = 10
                                             else:
                                                 dano_a_mais = 0
@@ -683,8 +683,8 @@ while True:
                                             if not 'vinte natural' in conquistas:
                                                 conquistas.append('vinte natural')
                         
-                                        if uso[1] in arma and dado == 20:
-                                            if 'excalibur' in uso[1]:
+                                        if uso[0] in arma and dado == 20:
+                                            if 'excalibur' in uso[0]:
                                                 enuma = True
                                             else:
                                                 dano = 25 + dano_a_mais
@@ -958,6 +958,8 @@ while True:
         '\nCapacete - Adquira a Capacete após concluir a luta contra os monstros' \
         '\nPeitoral - Adquira a Peitoral após concluir a luta contra os monstros' \
         '\nSet Completo - Adquira todos os equipamentos (Sabre, Espada, Excalibur, Capacete e Peitoral)')
+        parada = time.time()
+        print(f'\ntempo de jogo: {(parada - record):.2f} seg')
         voltar = input('\nDigite "V" para voltar: ')
         if not voltar.isalpha():
             continue
@@ -1035,5 +1037,5 @@ while True:
         if os.name == 'nt':
             os.system('cls')
         else:
-            os.system('clear')
+            os.systen('clear')
         break
