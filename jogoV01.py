@@ -546,7 +546,8 @@ while True:
                                         break
                                 if menu or next:
                                     break
-                        if menu or next:
+                        if menu or next or continuar[0] == 'n':
+                            menu = True
                             break
                     if next:
                         next = False
