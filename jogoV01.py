@@ -1038,5 +1038,5 @@ while True:
         if os.name == 'nt':
             os.system('cls')
         else:
-            os.systen('clear')
+            os.system('clear')
         break
