@@ -674,6 +674,7 @@ while True:
                                                 itens.append('peitoral')
                                             if 'sabre' in conquistas and 'espada' in conquistas and 'excalibur' in conquistas and 'capacete' in conquistas and 'peitoral' in conquistas and not 'Set completo' in conquistas:
                                                 conquistas.append('Set completo')
+                                                next = True
                                             break
 
                                         dano = 0
@@ -834,11 +835,8 @@ while True:
                                         break
 
                                     break
-
-                                if menu:
-                                    break
                                     
-                                while True:
+                                while next:
 
                                     if os.name == 'nt':
                                         os.system('cls')
