@@ -28,7 +28,7 @@ while True:
     ataque_secundario = 12
     ataque_especial = 33
     menu = False
-    next = False
+    passe = False
     sangramento = False
     erro = False
 
@@ -531,7 +531,7 @@ while True:
                                                 print('Faça uma escolha')
                                                 continue
                                             if continuar[0] == 's':
-                                                next = True
+                                                passe = True
                                                 break
                                             else:
                                                 menu = True
@@ -542,15 +542,16 @@ while True:
                                         derrotado = True
                                         menu = True
                                         break
-                                    if next:
+                                    if passe:
                                         break
-                                if menu or next:
+                                if menu or passe:
                                     break
-                        if menu or next or continuar[0] == 'n':
+                        if menu or passe or continuar[0] == 'n':
                             menu = True
                             break
-                    if next:
-                        next = False
+                    if passe:
+                        passe = False
+                        menu = False
                         while True:
                             enuma = False
                             refletor = False
@@ -674,7 +675,6 @@ while True:
                                                 itens.append('peitoral')
                                             if 'sabre' in conquistas and 'espada' in conquistas and 'excalibur' in conquistas and 'capacete' in conquistas and 'peitoral' in conquistas and not 'Set completo' in conquistas:
                                                 conquistas.append('Set completo')
-                                                next = True
                                             break
 
                                         dano = 0
@@ -835,8 +835,11 @@ while True:
                                         break
 
                                     break
+
+                                if menu:
+                                    break
                                     
-                                while next:
+                                while True:
 
                                     if os.name == 'nt':
                                         os.system('cls')
