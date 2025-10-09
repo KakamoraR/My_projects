@@ -815,6 +815,13 @@ while True:
                                                     print(f'O ataque foi refletido, o monstro tomou seu próprio ataque.' \
                                                     f'\nO monstro está com {vida_monstro} de vida')
                                                     time.sleep(3)
+                                                    if os.name == 'nt':
+                                                        os.system('cls')
+                                                    else:
+                                                        os.system('clear')
+                                                    if vida_monstro <=0:
+                                                        print('Você derrotou o monstro!!')
+                                                        time.sleep(3)
                                                 else:
                                                     vida_player = vida_player - ataque[1] + defesa
                                                 if ataque[0] == 'mordida' and not refletor:
