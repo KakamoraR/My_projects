@@ -822,6 +822,14 @@ while True:
                                                     if vida_monstro <=0:
                                                         print('Você derrotou o monstro!!')
                                                         time.sleep(3)
+                                                        if os.name == 'nt':
+                                                            os.system('cls')
+                                                        else:
+                                                            os.system('clear')
+                                                        print('Espera!! Tem outro gigante bem ali!!')
+                                                        if vida_player <85:
+                                                            vida_player += 15
+                                                        time.sleep(3)
                                                 else:
                                                     vida_player = vida_player - ataque[1] + defesa
                                                 if ataque[0] == 'mordida' and not refletor:
