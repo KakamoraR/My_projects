@@ -977,7 +977,10 @@ while True:
         '\nSet Completo - Adquira todos os equipamentos (Sabre, Espada, Excalibur, Capacete e Peitoral)')
         parada = time.time()
         print(f'\ntempo de jogo: {(parada - record):.2f} seg')
-        print(f'Pity para ???: {pity}/15')
+        pity_aqui = pity
+        if pity_aqui >=15:
+            pity_aqui = 15
+        print(f'Pity para ???: {pity_aqui}/15')
         voltar = input('\nDigite "V" para voltar: ')
         if not voltar.isalpha():
             continue
