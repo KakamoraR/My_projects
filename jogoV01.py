@@ -980,7 +980,12 @@ while True:
         pity_aqui = pity
         if pity_aqui >=15:
             pity_aqui = 15
-        print(f'Pity para ???: {pity_aqui}/15')
+        obtido = ''
+        if 'sabre' in itens:
+            obtido = '(Item obtido)'
+        else: 
+            obtido = '(Item não obtido)'
+        print(f'Pity para ???: {pity_aqui}/15 {obtido}')
         voltar = input('\nDigite "V" para voltar: ')
         if not voltar.isalpha():
             continue
