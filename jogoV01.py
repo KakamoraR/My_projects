@@ -60,13 +60,13 @@ while True:
     else:
         os.system('clear')
     
-    caminho=input('Escolha seu caminho: \n[B]em    ' \
+    caminho=input('[B]em    ' \
     '[R]egras        ' \
     '[I]tens' \
     '\n[M]al    ' \
     '[C]onquistas    ' \
     '[S]air' \
-    '\n(Acaso tenha ganhado algum, selecione o outro): ')
+    '\nEscolha seu caminho: ')
 
     item = random.randint(1,500)
     if item == 500 or caminho == 'udrl':
