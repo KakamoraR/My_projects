@@ -1,0 +1,81 @@
+#Verificador do primeiro dígito do cpf
+import os
+import random
+import pyperclip
+
+concluido = True
+
+def verificar_cpf(cpf_justo):
+    for i in range(0,2):
+        verificacao = False
+        try:
+            calculo = 11
+            if digito_verificador:
+                cpf_digitos = cpf_justo[0:10]
+        except UnboundLocalError:
+            cpf_justo = cpf_justo[0:9]
+            cpf_digitos = cpf_justo
+            calculo = 10
+        digitos = []
+        digito_verificador = True
+
+        for digito in cpf_digitos:
+            digitos.append(int(digito)*calculo)
+            calculo -= 1
+
+        for soma in digitos:
+            if verificacao:
+                ajuda = soma + ajuda
+            else:
+                ajuda = soma
+                verificacao = True
+        
+        digitos = ajuda
+        digitos = digitos % 11
+        if digitos == 0 or digitos == 1:
+            digitos = 0
+        else:
+            digitos = 11 - digitos
+        cpf_justo += str(digitos)
+
+    return cpf_justo
+
+def cpf_usuario():
+    while True:
+        cpf = input('Digite seu CPF: ')
+        cpf_ajustado = cpf.replace('.', '').replace('-', '')
+        if len(cpf_ajustado) == 9 or len(cpf_ajustado) == 11:
+            break
+        else:
+            print('Insira um CPF válido. \nEx: 123.456.789-10 ou 12345678910\n')
+            continue
+
+    return cpf_ajustado
+
+def limpar():
+    if os.name == 'nt':
+        os.system('cls')
+    else:
+        os.system('clear')
+
+limpar()
+
+while True:
+    pedido = input('1) Gerar CPF \t2) Validar CPF\nPedido: ')
+
+    if pedido == '1':
+        gerador = str(random.randint(100000000, 999999999))
+        pyperclip.copy(verificar_cpf(gerador))
+        limpar()
+        print(f'CPF gerado: {verificar_cpf(gerador)}\n(Copiado Automaticamente)')
+    elif pedido == '2':
+        cpf = cpf_usuario()
+        if cpf == verificar_cpf(cpf):
+            limpar()
+            print(f'CPF validado com sucesso!! \nCPF: {cpf}')
+        else:
+            limpar()
+            print('CPF inválido!!')
+    else:
+        limpar()
+        break
