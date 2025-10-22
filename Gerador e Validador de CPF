@@ -1,5 +1,6 @@
 import random
 import os
+import pyperclip
 
 def validador_cpf(cpf):
     regressivo = 10
@@ -35,6 +36,7 @@ while True:
     if escolha == '1':
         limpar()
         cpf = validador_cpf(str(random.randint(100000000, 999999999)))
+        pyperclip.copy(cpf)
         print(f'CPF gerado: {cpf}')
     elif escolha == '2':
         limpar()
