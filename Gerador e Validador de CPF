@@ -37,10 +37,10 @@ while True:
         limpar()
         cpf = validador_cpf(str(random.randint(100000000, 999999999)))
         pyperclip.copy(cpf)
-        print(f'CPF gerado: {cpf}')
+        print(f'CPF gerado: {cpf}\n(Copiado automaticamente)')
     elif escolha == '2':
         limpar()
-        cpf = input("Digite um CPF: ")
+        cpf = input("Digite um CPF: ").replace('-', '').replace('.', '')
 
         if validador_cpf(cpf) == cpf:
             print("CPF válido")
