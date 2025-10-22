@@ -35,7 +35,10 @@ while True:
     escolha = input("1) Gerar CPF \t2)Validar CPF\nEscolha: ")
     if escolha == '1':
         limpar()
-        cpf = validador_cpf(str(random.randint(100000000, 999999999)))
+        cpf = ''
+        for i in range(9):
+            cpf += str(random.randint(0,9))
+        cpf = validador_cpf(cpf)
         pyperclip.copy(cpf)
         print(f'CPF gerado: {cpf}\n(Copiado automaticamente)')
     elif escolha == '2':
