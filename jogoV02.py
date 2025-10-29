@@ -146,7 +146,7 @@ while True:
     elif caminho == '3':
         itens()
     elif caminho == '4':
-        mal()
+        caminho_mal()
     elif caminho == '5':
         conquistas()
     elif caminho == '6':
