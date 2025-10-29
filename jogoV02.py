@@ -6,6 +6,10 @@ def limpar():
     else:
         os.system('clear')
 
+def tempo():
+    global modo
+    time.sleep(2 if modo == '2' else 0)
+
 def menu():
     while True:
         limpar()
@@ -41,24 +45,28 @@ def caminho_bem():
         limpar()
 
         print('Vamos para a primeira fase do caminho do bem, adivinhe a palavra!!!')
-        time.sleep(2 if modo == '2' else 0)
+        tempo()
 
         palavra_secreta = palavras.palavra_aleatoria().lower()
         letras_certas = ''
+        palavra_formada = ''
 
         limpar()
 
         while True:
-            palavra_formada = ''
             resposta_usuario = input('Digite uma letra ou uma palavra: ')
 
             if not resposta_usuario.isalpha():
+                limpar()
+                print(palavra_formada if palavra_formada else 'Digite uma letra ou a palavra secreta')
                 continue
+
+            palavra_formada = ''
 
             if resposta_usuario.lower() == palavra_secreta:
                 break
 
-            if resposta_usuario.lower() in palavra_secreta and not resposta_usuario.lower() in letras_certas:
+            if resposta_usuario.lower() in palavra_secreta:
                 letras_certas += resposta_usuario.lower()
 
             for letra in palavra_secreta:
@@ -71,7 +79,7 @@ def caminho_bem():
 
             if palavra_formada == palavra_secreta:
                 print('Parabéns, você passou para a próxima fase.')
-                time.sleep(2 if modo == '2' else 0)
+                tempo()
                 break
 
             print(palavra_formada)
@@ -82,7 +90,7 @@ def caminho_bem():
         limpar()
 
         print('Vamos para a segunda fase do caminho do bem, adivinhe o número de 1 a 20 em 5 tentativas!!!')
-        time.sleep(2 if modo == '2' else 0)
+        tempo()
 
         limpar()
 
@@ -98,24 +106,71 @@ def caminho_bem():
             if not numero_usuario.isdigit():
                 limpar()
                 continue
-
-            tentativa += 1
             
             if int(numero_usuario) == numero_sortido:
                 print('Parabéns, você passou para a próxima fase.')
-                time.sleep(2 if modo == '2' else 0)
+                tempo()
                 break
             elif int(numero_usuario) > numero_sortido:
                 print('Escolha um número menor')
+                tentativa += 1
                 continue
             elif int(numero_usuario) < numero_sortido:
                 print('Escolha um número maior')
+                tentativa += 1
                 continue
         
         if tentativa == 5 or continuar() == False:
             break
 
-        ... #Terceira fase
+        limpar()
+
+        print('Vamos para a terceira fase do caminho do bem, ganhe um janknepon melhor de 3!!!')
+
+        limpar()
+
+        empates = 0
+        vitorias = 0
+        derrotas = 0
+
+        while True:
+
+            computador = random.randint(1, 3)
+
+            player = input('Escolha entre: \n1)Pedra \t2)papel \t3)Tesoura\n')
+
+            limpar()
+
+            if not player.isdigit():
+                continue
+
+            if str(computador) == player:
+                print('Vocês empataram')
+                empates += 1
+            elif (str(computador) == '1' and player == '2') or \
+            (str(computador) == '2' and player == '3') or \
+            (str(computador) == '3' and player == '1'):
+                print('Você venceu')
+                vitorias += 1
+            else:
+                print('Você perdeu')
+                derrotas += 1
+
+            if derrotas == 2 or vitorias == 2:
+                break
+
+            print(f'Derrotas: {derrotas} \nVitórias: {vitorias} \nEmpates: {empates}')
+            tempo()
+            limpar()
+
+        limpar()
+
+        if derrotas == 2:
+            print('Infelizmente você perdeu')
+        else:
+            print('Parabéns, você zerou o Caminho do Bem')
+        time.sleep(2)
+        break
 
 def caminho_mal():
     ...
