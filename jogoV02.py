@@ -112,7 +112,7 @@ def caminho_bem():
                 print('Escolha um número maior')
                 continue
         
-        if tentativa = 5 or continuar() == False:
+        if tentativa == 5 or continuar() == False:
             break
 
         ... #Terceira fase
