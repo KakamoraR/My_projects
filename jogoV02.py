@@ -8,7 +8,7 @@ def limpar():
 
 def tempo():
     global modo
-    time.sleep(2 if modo == '2' else 0)
+    time.sleep(2.5 if modo == '2' else 0)
 
 def menu():
     while True:
@@ -96,6 +96,7 @@ def caminho_bem():
 
         numero_sortido = random.randint(1,20)
         tentativa = 0
+        numero_anterior = 0
 
         while tentativa < 5:
 
@@ -105,6 +106,12 @@ def caminho_bem():
 
             if not numero_usuario.isdigit():
                 limpar()
+                if numero_anterior == 0:
+                    print('Escolha entre 1 e 20!!')
+                elif numero_anterior > numero_sortido:
+                    print(f'Escolha um número menor que {numero_anterior}')
+                elif numero_anterior < numero_sortido:
+                    print(f'Escolha um número maior que {numero_anterior}')
                 continue
             
             if int(numero_usuario) == numero_sortido:
@@ -112,15 +119,22 @@ def caminho_bem():
                 tempo()
                 break
             elif int(numero_usuario) > numero_sortido:
-                print('Escolha um número menor')
+                print(f'Escolha um número menor que {numero_usuario}')
+                numero_anterior = int(numero_usuario)
                 tentativa += 1
                 continue
             elif int(numero_usuario) < numero_sortido:
-                print('Escolha um número maior')
+                print(f'Escolha um número maior que {numero_usuario}')
+                numero_anterior = int(numero_usuario)
                 tentativa += 1
                 continue
         
-        if tentativa == 5 or continuar() == False:
+        if tentativa == 5:
+            limpar()
+            print('Infelizmente você perdeu')
+            time.sleep(2)
+            break
+        elif continuar() == False:
             break
 
         limpar()
@@ -160,8 +174,6 @@ def caminho_bem():
                 break
 
             print(f'Derrotas: {derrotas} \nVitórias: {vitorias} \nEmpates: {empates}')
-            tempo()
-            limpar()
 
         limpar()
 
