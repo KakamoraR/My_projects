@@ -231,7 +231,7 @@ def sair():
 def itens():
     ...
 
-conquistas = ['batata', 'macarrao', 'sim']
+conquistas = []
 modo = modo() #colocar nas regras para escolha mid game
 tempo_inicial = time.time()
 
