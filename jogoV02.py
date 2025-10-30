@@ -6,6 +6,13 @@ def limpar():
     else:
         os.system('clear')
 
+def sair_telas():
+
+    sair = input('\nPara recarregar a tela aperte somente enter \nPara sair, digite qualquer coisa: ')
+
+    if sair != '':
+        return True
+
 def tempo():
     global modo
     time.sleep(2.5 if modo == '2' else 0)
@@ -187,11 +194,35 @@ def caminho_bem():
 def caminho_mal():
     ...
 
-def conquistas():
-    ...
+def conquista():
+
+    global conquistas
+    
+    while True:
+
+        limpar()
+
+        print('Segue conquistas ganhas até agora: \n')
+
+        for a, b in enumerate(conquistas):
+            print(a, b, sep='-')
+
+        if sair_telas() == True:
+            break
 
 def regras():
-    ...
+
+    while True:
+    
+        limpar()
+
+        ... #regras em si
+
+        tempo_atual = time.time() - tempo_inicial
+        print(f'Tempo de jogo: {tempo_atual:.2f} segundos')
+
+        if sair_telas() == True:
+            break
 
 def sair():
     limpar()
@@ -200,7 +231,9 @@ def sair():
 def itens():
     ...
 
+conquistas = ['batata', 'macarrao', 'sim']
 modo = modo() #colocar nas regras para escolha mid game
+tempo_inicial = time.time()
 
 while True:
 
@@ -215,6 +248,6 @@ while True:
     elif caminho == '4':
         caminho_mal()
     elif caminho == '5':
-        conquistas()
+        conquista()
     elif caminho == '6':
         sair()
