@@ -8,14 +8,14 @@ def limpar():
 
 def sair_telas():
 
-    sair = input('\nPara recarregar a tela aperte somente enter \nPara sair, digite qualquer coisa: ')
+        sair = input('Para sair, digite qualquer outra coisa: ')
 
-    if sair != '':
-        return True
+        if sair != '':
+            return sair
 
 def tempo():
-    global modo
-    time.sleep(2.5 if modo == '2' else 0)
+    global mode
+    time.sleep(2.5 if mode == '2' else 0)
 
 def menu():
     while True:
@@ -29,22 +29,21 @@ def continuar():
     while True:
         limpar()
         continuar = input('Deseja continuar? \n1)Sim \t2)Não\n')
-        if continuar not in '12':
+        if continuar not in '12' or not continuar:
             continue
         if continuar[0] == '2':
             return False
         return
-    
+        
 def modo():
     while True:
         limpar()
-        modo = input('Selecione um modo (mudável nas regras): \n1)Speedrun \t2)História\n')
-        if modo not in '12' or not modo:
+        mode = input('Selecione um modo: \n1)Speedrun \t2)História\n')
+        if mode not in '12' or not mode:
             continue
-        return modo[0]
+        return mode
 
 def caminho_bem():
-
     while True:
         if continuar() == False:
             break
@@ -207,10 +206,11 @@ def conquista():
         for a, b in enumerate(conquistas):
             print(a, b, sep='-')
 
-        if sair_telas() == True:
+        if sair_telas():
             break
 
 def regras():
+    global mode
 
     while True:
     
@@ -219,9 +219,12 @@ def regras():
         ... #regras em si
 
         tempo_atual = time.time() - tempo_inicial
-        print(f'Tempo de jogo: {tempo_atual:.2f} segundos')
+        print(f'Tempo de jogo: {tempo_atual:.2f} segundos\n')
 
-        if sair_telas() == True:
+        print('Para mudar o modo, digite "1"')
+        if str(sair_telas()) == '1':
+            mode = modo()
+        else:
             break
 
 def sair():
@@ -232,7 +235,6 @@ def itens():
     ...
 
 conquistas = []
-modo = modo() #colocar nas regras para escolha mid game
 tempo_inicial = time.time()
 
 while True:
