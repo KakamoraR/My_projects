@@ -8,7 +8,7 @@ def limpar():
 
 def sair_telas():
 
-        sair = input('Para sair, digite qualquer outra coisa: ')
+        sair = input('\nPara sair, digite qualquer coisa: ')
 
         if sair != '':
             return sair
@@ -44,6 +44,8 @@ def modo():
         return mode
 
 def caminho_bem():
+    global pity, conquistas
+
     while True:
         if continuar() == False:
             break
@@ -59,10 +61,12 @@ def caminho_bem():
 
         limpar()
 
+        erro = False
+
         while True:
             resposta_usuario = input('Digite uma letra ou uma palavra: ')
 
-            if not resposta_usuario.isalpha():
+            if not resposta_usuario.isalpha() or len(resposta_usuario) > 1:
                 limpar()
                 print(palavra_formada if palavra_formada else 'Digite uma letra ou a palavra secreta')
                 continue
@@ -74,6 +78,8 @@ def caminho_bem():
 
             if resposta_usuario.lower() in palavra_secreta:
                 letras_certas += resposta_usuario.lower()
+            else:
+                erro = True
 
             for letra in palavra_secreta:
                 if letra in letras_certas:
@@ -89,6 +95,9 @@ def caminho_bem():
                 break
 
             print(palavra_formada)
+
+        if not erro and not 'experto' in conquistas:
+            conquistas.append('experto')
         
         if continuar() == False:
             break
@@ -122,6 +131,8 @@ def caminho_bem():
             
             if int(numero_usuario) == numero_sortido:
                 print('Parabéns, você passou para a próxima fase.')
+                if tentativa == 0 and not 'de primeira' in conquistas:
+                    conquistas.append('de primeira')
                 tempo()
                 break
             elif int(numero_usuario) > numero_sortido:
@@ -187,6 +198,15 @@ def caminho_bem():
             print('Infelizmente você perdeu')
         else:
             print('Parabéns, você zerou o Caminho do Bem')
+            pity += 1
+
+        if ((pity >= 15 and not 'katana' in itens_obtidos) or \
+            (random.randint(1,30) == 1 and not 'katana' in itens_obtidos)):
+            conquistas.append('katana')
+            itens_obtidos.append('katana')
+        if vitorias == 2 and derrotas == 0 and empates == 0 and not 'achei fácil' in conquistas:
+            conquistas.append('achei fácil')
+
         time.sleep(2)
         break
 
@@ -204,13 +224,13 @@ def conquista():
         print('Segue conquistas ganhas até agora: \n')
 
         for a, b in enumerate(conquistas):
-            print(a, b, sep='-')
+            print(a+1, b, sep='-')
 
         if sair_telas():
             break
 
 def regras():
-    global mode
+    global mode, pity
 
     while True:
     
@@ -219,11 +239,18 @@ def regras():
         ... #regras em si
 
         tempo_atual = time.time() - tempo_inicial
-        print(f'Tempo de jogo: {tempo_atual:.2f} segundos\n')
+        print(
+            f'Tempo de jogo: {tempo_atual:.2f} segundos\n' \
+            'Pity para item:', f'{pity}/15' if pity <= 15 else '15/15', '(Item obtido)' if 'katana' in conquistas else '(Item não obtido)'
+            )
+        print('\nPara mudar o modo, digite "1"')
 
-        print('Para mudar o modo, digite "1"')
-        if str(sair_telas()) == '1':
+        saida = sair_telas()
+    
+        if saida == '1':
             mode = modo()
+        elif saida is None:
+            continue
         else:
             break
 
@@ -232,9 +259,23 @@ def sair():
     sys.exit()
 
 def itens():
-    ...
+    global itens_obtidos
+
+    while True:
+    
+        limpar()
+
+        print('Itens obtidos até o momento: \n')
+        for ident, item in enumerate(itens_obtidos):
+            print(ident+1, item, sep='-')
+
+        if sair_telas():
+            break
 
 conquistas = []
+itens_obtidos = []
+pity = 0
+mode = '2'
 tempo_inicial = time.time()
 
 while True:
