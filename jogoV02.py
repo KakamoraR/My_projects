@@ -266,8 +266,8 @@ def itens():
         limpar()
 
         print('Itens obtidos até o momento: \n')
-        for ident, item in enumerate(itens_obtidos):
-            print(ident+1, item, sep='-')
+        for a, b in enumerate(itens_obtidos):
+            print(a+1, b, sep='-')
 
         if sair_telas():
             break
