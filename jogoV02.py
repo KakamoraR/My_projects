@@ -156,7 +156,8 @@ def caminho_bem():
 
         limpar()
 
-        print('Vamos para a terceira fase do caminho do bem, ganhe um janknepon melhor de 3!!!')
+        print('Vamos para a terceira fase do caminho do bem, ganhe um jankenpon melhor de 3!!!')
+        tempo()
 
         limpar()
 
@@ -211,7 +212,12 @@ def caminho_bem():
         break
 
 def caminho_mal():
-    ...
+     while True:
+
+        if continuar() == False:
+            break
+
+
 
 def conquista():
 
