@@ -353,7 +353,7 @@ def caminho_mal():
                 dano_player = dado + dano_a_mais + (5 if itens_uso[0] else 0)
 
                 print(f'Player jogou o dado e conseguiu {dado}')
-                print()
+                print(f'Player deu {dano_player} de dano.')
                 #turno monstro
 
                 #turno boss
