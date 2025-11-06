@@ -13,9 +13,9 @@ def sair_telas():
         if sair != '':
             return sair
 
-def tempo():
+def tempo(segundos):
     global mode
-    time.sleep(2.5 if mode == '2' else 0)
+    time.sleep(segundos if mode == '2' else 0)
 
 def menu():
     while True:
@@ -43,6 +43,11 @@ def modo():
             continue
         return mode
 
+def perda():
+    limpar()
+    print('Infelizmente, você perdeu.')
+    time.sleep(2)
+
 def caminho_bem():
     global pity, conquistas
 
@@ -53,7 +58,7 @@ def caminho_bem():
         limpar()
 
         print('Vamos para a primeira fase do caminho do bem, adivinhe a palavra!!!')
-        tempo()
+        tempo(2)
 
         palavra_secreta = palavras.palavra_aleatoria().lower()
         letras_certas = ''
@@ -90,8 +95,8 @@ def caminho_bem():
             limpar()
 
             if palavra_formada == palavra_secreta:
-                print('Parabéns, você passou para a próxima fase.')
-                tempo()
+                print('Parabéns, você passou para a próxima fase!')
+                tempo(2)
                 break
 
             print(palavra_formada)
@@ -105,7 +110,7 @@ def caminho_bem():
         limpar()
 
         print('Vamos para a segunda fase do caminho do bem, adivinhe o número de 1 a 20 em 5 tentativas!!!')
-        tempo()
+        tempo(2)
 
         limpar()
 
@@ -130,10 +135,10 @@ def caminho_bem():
                 continue
             
             if int(numero_usuario) == numero_sortido:
-                print('Parabéns, você passou para a próxima fase.')
+                print('Parabéns, você passou para a próxima fase!')
                 if tentativa == 0 and not 'de primeira' in conquistas:
                     conquistas.append('de primeira')
-                tempo()
+                tempo(2)
                 break
             elif int(numero_usuario) > numero_sortido:
                 print(f'Escolha um número menor que {numero_usuario}')
@@ -147,9 +152,7 @@ def caminho_bem():
                 continue
         
         if tentativa == 5:
-            limpar()
-            print('Infelizmente você perdeu')
-            time.sleep(2)
+            perda()
             break
         elif continuar() == False:
             break
@@ -157,7 +160,7 @@ def caminho_bem():
         limpar()
 
         print('Vamos para a terceira fase do caminho do bem, ganhe um jankenpon melhor de 3!!!')
-        tempo()
+        tempo(2)
 
         limpar()
 
@@ -196,7 +199,8 @@ def caminho_bem():
         limpar()
 
         if derrotas == 2:
-            print('Infelizmente você perdeu')
+            perda()
+            break
         else:
             print('Parabéns, você zerou o Caminho do Bem')
             pity += 1
@@ -212,11 +216,150 @@ def caminho_bem():
         break
 
 def caminho_mal():
-     while True:
+    global itens_obtidos, itens_uso, armas, armaduras, perdeu
+
+    while True:
 
         if continuar() == False:
             break
 
+        limpar()
+
+        print('Vamos para a primeira fase do caminho do Mal, digite na sequência!!!')
+        tempo(2)
+
+        nivel = 0
+
+        while True:
+            numero_rapido = ''
+
+            limpar()
+            print(f'Preparar... apontar... vai!! \tnivel:{nivel+1}/3')
+            time.sleep(2)
+            limpar()
+
+            if nivel == 0:
+                for i in range(0,4):
+                    numero_rapido += str(random.randint(0,9))
+                print(numero_rapido)
+                time.sleep(0.6)
+            elif nivel == 1:
+                for i in range(0,6):
+                    numero_rapido += str(random.randint(0,9))
+                print(numero_rapido)
+                time.sleep(0.8)
+            elif nivel == 2:
+                for i in range(0,8):
+                    numero_rapido += str(random.randint(0,9))
+                print(numero_rapido)
+                time.sleep(1)
+
+            while True:
+                limpar()
+
+                numero_visto = input('Número visto: ')
+
+                if not numero_visto.isdigit():
+                    continue
+
+                break
+
+            if numero_visto == numero_rapido:
+                limpar()
+                print('Parabéns, você passou de nível!')
+                tempo(2)
+                nivel += 1
+            else:
+                perdeu = perda()
+                break
+
+            if nivel == 3:
+                limpar()
+                print('Parabéns, você passou para a próxima fase!')
+                tempo(2)
+                break
+
+        if perdeu:
+            break
+
+        if continuar() == False:
+            break
+
+        limpar()
+        print('Vamos para a segunda fase do caminho do Mal, mini RPG!!!')
+        tempo(2)
+
+        while True:
+            limpar()
+
+            print(f'Estes são seus itens equipados atualmente: \n\narma: {itens_uso[0]} \narmadura: {itens_uso[1]}')
+
+            continuacao = input('\nPronto? \n1)Sim \t2)Não \nEscolha: ')
+
+            if not continuacao.isdigit() or not continuacao in '12':
+                continue
+            if continuacao == '2':
+                perdeu = True
+                break
+
+            limpar()
+            print('O player estava entendiado em sua casa, e queria se divertir de alguma forma...')
+            tempo(3)
+            limpar()
+            print('Depois de um tempo, o player decidiu sair por ai com alguma garota que encontrasse, para talvez ter um clima entre eles.')
+            tempo(3)
+            limpar()
+            print('Após sair pela vila, achou uma garota que era de seu tipo, e a convidou para passear pelo bosque.')
+            tempo(3)
+            limpar()
+            print('Ambos estavam curtindo a voltinha que estavam dando, até se aproximarem um pouco mais e...Urrrrrr')
+            tempo(3)
+            limpar()
+            print('Essa não, um zombie!!!')
+            tempo(3)
+            limpar()
+            print('Após esse momento, player se prepara para o combate')
+            tempo(3)
+
+            refletor = False
+            enuma = False
+
+            while True:
+                limpar()
+                
+                #definindo itens
+                if itens_uso[0] == 'excalibur':
+                    dano_a_mais = 7 
+                    enuma = True
+                elif itens_uso[0] == 'espada':
+                    dano_a_mais = 4
+                elif itens_uso[0] == 'katana':
+                    dano_a_mais = 10
+                else:
+                    dano_a_mais = 0
+
+                if itens_uso[1] == 'capacete':
+                    defesa = 4
+                elif itens_uso[1] == 'peitoral':
+                    defesa = 7
+                elif itens_uso[1] == 'refletor':
+                    refletor = True
+                else:
+                    defesa = 0
+
+                #turno player
+                dado = random.randint(1,20)
+
+                dano_player = #continue daqui
+
+                print(f'Player jogou o dado e conseguiu {dado}')
+                print()
+                #turno monstro
+
+                #turno boss
+
+        if perdeu:
+            break
 
 
 def conquista():
@@ -265,23 +408,42 @@ def sair():
     sys.exit()
 
 def itens():
-    global itens_obtidos
+    global itens_obtidos, itens_uso, armas, armaduras
 
     while True:
     
         limpar()
 
-        print('Itens obtidos até o momento: \n')
+        print('Itens obtidos até o momento:\n')
         for a, b in enumerate(itens_obtidos):
             print(a+1, b, sep='-')
 
-        if sair_telas():
+        print('\nItens em uso no momento:\n')
+        for c,d in enumerate(itens_uso):
+            if d:
+                print(d)
+
+        equipar = input('\nSe deseja equipar algum item, digite o nome aqui.\n(Para sair digite qualquer coisa)\nEscolha: ')
+
+        if equipar.isalpha():
+            equipar = equipar.lower()
+
+        if equipar in itens_obtidos:
+            if equipar in armas:
+                itens_uso[0] = equipar
+            elif equipar in armaduras:
+                itens_uso[1] = equipar
+        elif equipar:
             break
 
 conquistas = []
 itens_obtidos = []
+armas = ['katana', 'espada', 'excalibur']
+armaduras = ['peitoral', 'capacete', 'refletor']
+itens_uso = ['', '']
 pity = 0
 mode = '2'
+perdeu = False
 tempo_inicial = time.time()
 
 while True:
