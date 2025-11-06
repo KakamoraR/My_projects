@@ -350,7 +350,7 @@ def caminho_mal():
                 #turno player
                 dado = random.randint(1,20)
 
-                dano_player = #continue daqui
+                dano_player = dado + dano_a_mais + (5 if itens_uso[0] else 0)
 
                 print(f'Player jogou o dado e conseguiu {dado}')
                 print()
