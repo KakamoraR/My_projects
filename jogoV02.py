@@ -101,8 +101,8 @@ def caminho_bem():
 
             print(palavra_formada)
 
-        if not erro and not 'experto' in conquistas:
-            conquistas.append('experto')
+        if not erro and not 'Experto' in conquistas:
+            conquistas.append('Experto')
         
         if continuar() == False:
             break
@@ -136,8 +136,8 @@ def caminho_bem():
             
             if int(numero_usuario) == numero_sortido:
                 print('Parabéns, você passou para a próxima fase!')
-                if tentativa == 0 and not 'de primeira' in conquistas:
-                    conquistas.append('de primeira')
+                if tentativa == 0 and not 'De Primeira' in conquistas:
+                    conquistas.append('De Primeira')
                 tempo(2)
                 break
             elif int(numero_usuario) > numero_sortido:
@@ -206,11 +206,11 @@ def caminho_bem():
             pity += 1
 
         if ((pity >= 15 and not 'katana' in itens_obtidos) or \
-            (random.randint(1,30) == 1 and not 'katana' in itens_obtidos)):
-            conquistas.append('katana')
-            itens_obtidos.append('katana')
+            (random.randint(1,30) == 1 and not 'Katana' in itens_obtidos)):
+            conquistas.append('Katana')
+            itens_obtidos.append('Katana')
         if vitorias == 2 and derrotas == 0 and empates == 0 and not 'achei fácil' in conquistas:
-            conquistas.append('achei fácil')
+            conquistas.append('Achei Fácil')
 
         time.sleep(2)
         break
@@ -281,6 +281,9 @@ def caminho_mal():
 
         if perdeu:
             break
+
+        if not 'Visao' in conquistas:
+            conquistas.append('Visao')
 
         if continuar() == False:
             break
@@ -370,20 +373,6 @@ def caminho_mal():
 
                 limpar()
 
-                vida_monstro -= dano_player
-
-                if vida_monstro <= 0:
-                    print('Párabens, você derrotou o monstro!')
-                    time.sleep(2)
-                    limpar()
-                    print('Espera... tem outro gigante bem ali!')
-                    tempo(2)
-                else:
-                    print(f'Monstro está com {vida_monstro}')
-                    time.sleep(2)
-
-                limpar()
-
                 ataques_monstros = [
                     ["espancada", 33],
                     ["mordida", 10],
@@ -394,7 +383,20 @@ def caminho_mal():
 
                 if vida_monstro > 0:
 
-                    print('Monstro está atacando.')
+                    vida_monstro -= dano_player
+
+                    if vida_monstro <= 0:
+                        print('Párabens, você derrotou o monstro!')
+                        time.sleep(2)
+                        limpar()
+                        print('Espera... tem outro gigante bem ali!')
+                        time.sleep(2)
+                        continue
+                    else:
+                        print(f'Monstro está com {vida_monstro} de vida')
+                        time.sleep(2)
+
+                    print('Vez do monstro atacar.')
                     tempo(2)
                     print(f'Monstro usou {ataques_monstros[ataque_monstro][0]} e deu {ataques_monstros[ataque_monstro][1]}')
                     time.sleep(2)
@@ -407,11 +409,20 @@ def caminho_mal():
 
                 else:
 
-                    print('Boss está atacando.')
-                    tempo(2)
-                    print(f'Boss usou {ataques_monstros[ataque_monstro][0]} e deu {ataques_monstros[ataque_monstro][1]}')
+                    vida_boss -= dano_player
 
-                    vida_player -= ataques_monstros[ataque_monstro][1]
+                    if vida_boss <= 0:
+                        continue
+                    else:
+                        print(f'Boss está com {vida_boss} de vida')
+                        time.sleep(2)
+
+                    print('Vez do boss atacar.')
+                    tempo(2)
+                    print(f'\nBoss usou {ataques_monstros[ataque_monstro][0]} e deu {ataques_monstros[ataque_monstro][1]} de dano')
+                    time.sleep(2)
+
+                    vida_player -= ataques_monstros[ataque_monstro][1] + defesa
 
                     limpar()
                     print(f'Player está com {vida_player if vida_player > 0 else 0}')
@@ -421,10 +432,26 @@ def caminho_mal():
 
         if perdeu:
             break
-            
+
+        if random.randint(1,12) == 1 and not 'Espada' in conquistas:
+            conquistas.append('Espada')
+            itens_obtidos.append('Espada')
+        if random.randint(1,12) == 1 and not 'Capacete' in conquistas:
+            conquistas.append('Capacete')
+            itens_obtidos.append('Capacete')
+        if random.randint(1,12) == 1 and not 'Peitoral' in conquistas:
+            conquistas.append('Peitoral')
+            itens_obtidos.append('Peitoral')
+        if random.randint(1,12) == 1 and not 'Excalibur' in conquistas:
+            conquistas.append('Excalibur')
+            itens_obtidos.append('Excalibur')
+
+        if vida_player >= 50 and not 'Peito de Ferro' in conquistas:
+            conquistas.append('Peito de Ferro')
+
         limpar()
         print('Parabéns, você derrotou os monstros!')
-        tempo(2)
+        time.sleep(2)
 
         if continuar() == False:
             break
