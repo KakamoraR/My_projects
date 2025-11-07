@@ -321,10 +321,18 @@ def caminho_mal():
             print('Após esse momento, player se prepara para o combate')
             tempo(3)
 
-            refletor = False
             enuma = False
+            vida_player = 100
+            vida_monstro = 30
+            vida_boss = 70
 
             while True:
+                if vida_player <= 0:
+                    perdeu = perda()
+                    break
+                elif vida_boss <= 0:
+                    break
+
                 limpar()
                 
                 #definindo itens
@@ -342,25 +350,106 @@ def caminho_mal():
                     defesa = 4
                 elif itens_uso[1] == 'peitoral':
                     defesa = 7
-                elif itens_uso[1] == 'refletor':
-                    refletor = True
                 else:
                     defesa = 0
 
                 #turno player
                 dado = random.randint(1,20)
 
-                dano_player = dado + dano_a_mais + (5 if itens_uso[0] else 0)
+                dano_player = 99999 if enuma == True and dado == 20 else (dado + dano_a_mais + (5 if itens_uso[0] and dado == 20 else 0))
 
                 print(f'Player jogou o dado e conseguiu {dado}')
-                print(f'Player deu {dano_player} de dano.')
-                #turno monstro
+                tempo(2)
+                if enuma:
+                    print('Player sente um poder surgir em suas veias.')
+                    time.sleep(2)
+                    print('Player - Enuma... Eilish!!!')
+                else:
+                    print(f'Player deu {dano_player} de dano.')
+                time.sleep(2)
 
-                #turno boss
+                limpar()
+
+                vida_monstro -= dano_player
+
+                if vida_monstro <= 0:
+                    print('Párabens, você derrotou o monstro!')
+                    time.sleep(2)
+                    limpar()
+                    print('Espera... tem outro gigante bem ali!')
+                    tempo(2)
+                else:
+                    print(f'Monstro está com {vida_monstro}')
+                    time.sleep(2)
+
+                limpar()
+
+                ataques_monstros = [
+                    ["espancada", 33],
+                    ["mordida", 10],
+                    ["golpe simples", 12]
+                ]
+
+                ataque_monstro = random.randint(1,2) if vida_monstro > 0 else random.randint(1,3)
+
+                if vida_monstro > 0:
+
+                    print('Monstro está atacando.')
+                    tempo(2)
+                    print(f'Monstro usou {ataques_monstros[ataque_monstro][0]} e deu {ataques_monstros[ataque_monstro][1]}')
+                    time.sleep(2)
+
+                    vida_player -= ataques_monstros[ataque_monstro][1] + defesa
+
+                    limpar()
+                    print(f'Player está com {vida_player if vida_player > 0 else 0}')
+                    time.sleep(2)
+
+                else:
+
+                    print('Boss está atacando.')
+                    tempo(2)
+                    print(f'Boss usou {ataques_monstros[ataque_monstro][0]} e deu {ataques_monstros[ataque_monstro][1]}')
+
+                    vida_player -= ataques_monstros[ataque_monstro][1]
+
+                    limpar()
+                    print(f'Player está com {vida_player if vida_player > 0 else 0}')
+                    time.sleep(2)
+
+            break
 
         if perdeu:
             break
+            
+        limpar()
+        print('Parabéns, você derrotou os monstros!')
+        tempo(2)
 
+        if continuar() == False:
+            break
+
+        limpar()
+        print('Vamos para a terceira fase do caminho do Mal, boa sorte!!!')
+        tempo(2)
+
+        while True:
+            cara_coroa = [1, 2]
+
+            limpar()
+            cara_coroa_usuario = input('Escolha entre... \n1)cara \t2)coroa. \nEscolha: ')
+
+            if not cara_coroa_usuario.isdigit() or not cara_coroa_usuario in '12':
+                continue
+
+            if cara_coroa_usuario == random.choice(cara_coroa):
+                print('parabéns, você zerou o caminho do Mal!')
+            else:
+                perdeu = perda()
+                break
+        
+        if perdeu:
+            break
 
 def conquista():
 
@@ -439,7 +528,7 @@ def itens():
 conquistas = []
 itens_obtidos = []
 armas = ['katana', 'espada', 'excalibur']
-armaduras = ['peitoral', 'capacete', 'refletor']
+armaduras = ['peitoral', 'capacete']
 itens_uso = ['', '']
 pity = 0
 mode = '2'
