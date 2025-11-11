@@ -48,6 +48,18 @@ def perda():
     print('Infelizmente, você perdeu.')
     time.sleep(2)
 
+def verificar_conquistas():
+    global conquistas, tempo_inicial
+
+    if len(conquistas) == 16 and not '100%' in conquistas:
+        conquistas.append('100%')
+
+    if time.time() - tempo_inicial <= 1800 and '100%' in conquistas and not 'Speedrunner' in conquistas:
+        conquistas.append('Speedrunner')
+
+    if len(conquistas) == 18 and not 'Platinado' in conquistas:
+        conquistas.append('Platinado')
+
 def caminho_bem():
     global pity, conquistas
 
@@ -209,14 +221,18 @@ def caminho_bem():
             (random.randint(1,30) == 1 and not 'Katana' in itens_obtidos)):
             conquistas.append('Katana')
             itens_obtidos.append('Katana')
-        if vitorias == 2 and derrotas == 0 and empates == 0 and not 'achei fácil' in conquistas:
+        if len(itens_obtidos) == 5 and not 'Full set' in conquistas:
+            conquistas.append('Full set')
+        if vitorias == 2 and derrotas == 0 and empates == 0 and not 'Achei Fácil' in conquistas:
             conquistas.append('Achei Fácil')
+        if not 'Caminho do Bem' in conquistas:
+            conquistas.append('Caminho do Bem')
 
         time.sleep(2)
         break
 
 def caminho_mal():
-    global itens_obtidos, itens_uso, armas, armaduras, perdeu
+    global itens_obtidos, itens_uso, armas, armaduras, perdeu, ultimo_nivel
 
     while True:
 
@@ -282,8 +298,8 @@ def caminho_mal():
         if perdeu:
             break
 
-        if not 'Visao' in conquistas:
-            conquistas.append('Visao')
+        if not 'Visão' in conquistas:
+            conquistas.append('Visão')
 
         if continuar() == False:
             break
@@ -356,8 +372,14 @@ def caminho_mal():
                 else:
                     defesa = 0
 
-                #turno player
                 dado = random.randint(1,20)
+
+                if dado == 20 and enuma and not 'Gilga reference' in conquistas:
+                    conquistas.append('Gilga reference')
+                    if not 'Vinte natural' in conquistas:
+                        conquistas.append('Vinte natural')
+                elif dado == 20 and not 'Vinte natural' in conquistas:
+                    conquistas.append('Vinte natural')
 
                 dano_player = 99999 if enuma == True and dado == 20 else (dado + dano_a_mais + (5 if itens_uso[0] and dado == 20 else 0))
 
@@ -445,7 +467,8 @@ def caminho_mal():
         if random.randint(1,12) == 1 and not 'Excalibur' in conquistas:
             conquistas.append('Excalibur')
             itens_obtidos.append('Excalibur')
-
+        if len(itens_obtidos) == 5 and not 'Full set' in conquistas:
+            conquistas.append('Full set')
         if vida_player >= 50 and not 'Peito de Ferro' in conquistas:
             conquistas.append('Peito de Ferro')
 
@@ -471,8 +494,13 @@ def caminho_mal():
 
             if cara_coroa_usuario == random.choice(cara_coroa):
                 print('parabéns, você zerou o caminho do Mal!')
+                if not 'Caminho do Mal' in conquistas:
+                    conquistas.append('Caminho do Mal')
+                if not 'Ez game' in conquistas:
+                    conquistas.append('Ez game')
             else:
                 perdeu = perda()
+                ultimo_nivel = True
                 break
         
         if perdeu:
@@ -501,11 +529,36 @@ def regras():
     
         limpar()
 
-        ... #regras em si
+        print(
+            'Regras do jogo:'\
+            '\n1-Equipe os itens para poder usá-los na segunda fase do caminho do mal'\
+            '\n2-Você pode deixar o jogo mais rapido de zerar mudando o modo nas regras'\
+            '\n3-Se vira'\
+            '\n\nConquistas do jogo:'\
+            '\n1-"Experto", consegue ao passar a primeira fase do bem sem errar uma letra'\
+            '\n2-"De Primeira", consegue ao acertar de primeira o numero da segunda fase do bem'\
+            '\n3-"Katana", consegue ao pegar a "Katana" depois de zerar o caminho do bem'\
+            '\n4-"Achei Fácil", consegue ao passar a terceira fase do bem sem empatar ou perder'\
+            '\n5-"Caminho do Bem", consegue ao zerar o caminho do bem'\
+            '\n6-"Visão", consegue ao passar a primeira fase do mal'\
+            '\n7-"Vinte natural", consegue ao tirar um 20 no dado da segunda fase do mal'\
+            '\n8-"Gilga reference", consegue ao tirar um 20 no dado da segunda fase do mal com a "Excalibur"'\
+            '\n9-"Espada", consegue ao pegar a "Espada" da segunda fase do mal'\
+            '\n10-"Excalibur", consegue ao pegar a "Excalibur" da segunda fase do mal'\
+            '\n11-"Capacete", consegue ao pegar a "Capacete" da segunda fase do mal'\
+            '\n12-"Peitoral", consegue ao pegar a "Peitoral" da segunda fase do mal'\
+            '\n13-"Full set", consegue ao pegar todos os itens do jogo'\
+            '\n14-"Peito de Ferro", consegue ao passar a segunda fase do mal sem perder mais de 50 de vida'\
+            '\n15-"Ez game", consegue ao passar a terceira fase do mal na primeira tentativa'\
+            '\n16-"Caminho do Mal", consegue ao zerar o caminho do mal'\
+            '\n17-"100%", consegue ao pegar todas as 16 conquistas anteriores'\
+            '\n18-"Speedrunner", consegue ao zerar o jogo em 30 minutos'\
+            '\n19-"Platinado", consegue ao pegar todas as conquistas do jogo'\
+            )
 
         tempo_atual = time.time() - tempo_inicial
         print(
-            f'Tempo de jogo: {tempo_atual:.2f} segundos\n' \
+            f'\nTempo de jogo: {tempo_atual:.2f} segundos\n' \
             'Pity para item:', f'{pity}/15' if pity <= 15 else '15/15', '(Item obtido)' if 'katana' in conquistas else '(Item não obtido)'
             )
         print('\nPara mudar o modo, digite "1"')
@@ -560,9 +613,12 @@ itens_uso = ['', '']
 pity = 0
 mode = '2'
 perdeu = False
+ultimo_nivel = False
 tempo_inicial = time.time()
 
 while True:
+
+    verificar_conquistas()
 
     caminho = menu()
 
