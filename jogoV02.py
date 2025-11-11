@@ -398,6 +398,9 @@ def caminho_mal():
                 if sangramento:
                     print('Player está sangrando... -5 de vida')
                     vida_player -= 5
+                    sangramento = False
+                    print(f'Player está com {vida_player if vida_player > 0 else 0}')
+                    time.sleep(2)
                     limpar()
 
                 ataques_monstros = [
@@ -551,8 +554,9 @@ def regras():
             '\n1-Equipe os itens para poder usá-los na segunda fase do caminho do mal'\
             '\n2-Você pode deixar o jogo mais rapido de zerar mudando o modo nas regras'\
             '\n3-Você pode manter equipado uma arma e uma armadura por vez'\
-            '\n4-O sangramento dura 2 turnos'
-            '\n5-Se vira'\
+            '\n4-O sangramento dura 2 turnos'\
+            '\n5-O modo não altera informações consideradas importantes na segunda fase do mal'\
+            '\n6-Se vira'\
             '\n\nConquistas do jogo:'\
             '\n1-"Experto", consegue ao passar a primeira fase do bem sem errar uma letra'\
             '\n2-"De Primeira", consegue ao acertar de primeira o numero da segunda fase do bem'\
