@@ -404,14 +404,14 @@ def caminho_mal():
                     limpar()
 
                 ataques_monstros = [
-                    ["espancada", 33],
+                    ["golpe simples", 12],
                     ["mordida", 10],
-                    ["golpe simples", 12]
+                    ["espancada", 33]
                 ]
 
-                ataque_monstro = random.randint(1,2) if vida_monstro > 0 else random.randint(1,3)
+                ataque_monstro = random.randint(0,1) if vida_monstro > 0 else random.randint(0,2)
 
-                if ataque_monstro == 2:
+                if ataque_monstro == 1:
                     sangramento = True
 
                 if vida_monstro > 0:
@@ -492,7 +492,7 @@ def caminho_mal():
             conquistas.append('Peito de Ferro')
 
         limpar()
-        print('Parabéns, você derrotou os monstros!')
+        print('Parabéns, você derrotou os monstros e passou para a próxima fase!')
         time.sleep(2)
 
         if continuar() == False:
@@ -556,6 +556,7 @@ def regras():
             '\n3-Você pode manter equipado uma arma e uma armadura por vez'\
             '\n4-O sangramento dura 2 turnos'\
             '\n5-O modo não altera informações consideradas importantes na segunda fase do mal'\
+            '\n6-Por padrão, o modo do jogo vem como modo história'\
             '\n6-Se vira'\
             '\n\nConquistas do jogo:'\
             '\n1-"Experto", consegue ao passar a primeira fase do bem sem errar uma letra'\
@@ -632,14 +633,14 @@ conquistas = []
 itens_obtidos = []
 armas = ['katana', 'espada', 'excalibur']
 armaduras = ['peitoral', 'capacete']
-itens_uso = ['', '']
+itens_uso = ['katana', '']
 pity = 0
 mode = '2'
-perdeu = False
 ultimo_nivel = False
 tempo_inicial = time.time()
 
 while True:
+    perdeu = False
 
     verificar_conquistas()
 
