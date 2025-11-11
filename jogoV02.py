@@ -47,6 +47,7 @@ def perda():
     limpar()
     print('Infelizmente, você perdeu.')
     time.sleep(2)
+    return True
 
 def verificar_conquistas():
     global conquistas, tempo_inicial
@@ -291,7 +292,6 @@ def caminho_mal():
                 tempo(2)
             else:
                 perdeu = perda()
-                perdeu = True
                 break
 
         if perdeu:
@@ -348,7 +348,6 @@ def caminho_mal():
             while True:
                 if vida_player <= 0:
                     perdeu = perda()
-                    perdeu = True
                     break
                 elif vida_boss <= 0:
                     break
@@ -519,7 +518,6 @@ def caminho_mal():
                     conquistas.append('Ez game')
             else:
                 perdeu = perda()
-                perdeu = True
                 ultimo_nivel = True
                 break
         
