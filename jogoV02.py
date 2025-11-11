@@ -282,18 +282,16 @@ def caminho_mal():
 
             if numero_visto == numero_rapido:
                 limpar()
+                nivel += 1
+                if nivel == 3:
+                    print('Parabéns, você passou para a próxima fase!')
+                    tempo(2)
+                    break
                 print('Parabéns, você passou de nível!')
                 tempo(2)
-                nivel += 1
             else:
                 perdeu = perda()
                 perdeu = True
-                break
-
-            if nivel == 3:
-                limpar()
-                print('Parabéns, você passou para a próxima fase!')
-                tempo(2)
                 break
 
         if perdeu:
@@ -345,6 +343,7 @@ def caminho_mal():
             vida_player = 100
             vida_monstro = 30
             vida_boss = 70
+            sangramento = False
 
             while True:
                 if vida_player <= 0:
@@ -396,6 +395,11 @@ def caminho_mal():
 
                 limpar()
 
+                if sangramento:
+                    print('Player está sangrando... -5 de vida')
+                    vida_player -= 5
+                    limpar()
+
                 ataques_monstros = [
                     ["espancada", 33],
                     ["mordida", 10],
@@ -403,6 +407,9 @@ def caminho_mal():
                 ]
 
                 ataque_monstro = random.randint(1,2) if vida_monstro > 0 else random.randint(1,3)
+
+                if ataque_monstro == 2:
+                    sangramento = True
 
                 if vida_monstro > 0:
 
@@ -419,9 +426,13 @@ def caminho_mal():
                         print(f'Monstro está com {vida_monstro} de vida')
                         time.sleep(2)
 
+                    limpar()
                     print('Vez do monstro atacar.')
                     tempo(2)
                     print(f'Monstro usou {ataques_monstros[ataque_monstro][0]} e deu {ataques_monstros[ataque_monstro][1]}')
+                    if sangramento:
+                        print('Player está sangrando... -5 de vida')
+                        vida_player -= 5
                     time.sleep(2)
 
                     vida_player -= ataques_monstros[ataque_monstro][1] + defesa
@@ -440,9 +451,13 @@ def caminho_mal():
                         print(f'Boss está com {vida_boss} de vida')
                         time.sleep(2)
 
+                    limpar()
                     print('Vez do boss atacar.')
                     tempo(2)
-                    print(f'\nBoss usou {ataques_monstros[ataque_monstro][0]} e deu {ataques_monstros[ataque_monstro][1]} de dano')
+                    print(f'Boss usou {ataques_monstros[ataque_monstro][0]} e deu {ataques_monstros[ataque_monstro][1]} de dano')
+                    if sangramento:
+                        print('Player está sangrando... -5 de vida')
+                        vida_player -= 5
                     time.sleep(2)
 
                     vida_player -= ataques_monstros[ataque_monstro][1] + defesa
@@ -536,7 +551,8 @@ def regras():
             '\n1-Equipe os itens para poder usá-los na segunda fase do caminho do mal'\
             '\n2-Você pode deixar o jogo mais rapido de zerar mudando o modo nas regras'\
             '\n3-Você pode manter equipado uma arma e uma armadura por vez'\
-            '\n4-Se vira'\
+            '\n4-O sangramento dura 2 turnos'
+            '\n5-Se vira'\
             '\n\nConquistas do jogo:'\
             '\n1-"Experto", consegue ao passar a primeira fase do bem sem errar uma letra'\
             '\n2-"De Primeira", consegue ao acertar de primeira o numero da segunda fase do bem'\
