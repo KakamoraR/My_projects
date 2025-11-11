@@ -188,7 +188,7 @@ def caminho_bem():
 
             limpar()
 
-            if not player.isdigit():
+            if not player.isdigit() or not player in '123':
                 continue
 
             if str(computador) == player:
@@ -287,6 +287,7 @@ def caminho_mal():
                 nivel += 1
             else:
                 perdeu = perda()
+                perdeu = True
                 break
 
             if nivel == 3:
@@ -348,13 +349,13 @@ def caminho_mal():
             while True:
                 if vida_player <= 0:
                     perdeu = perda()
+                    perdeu = True
                     break
                 elif vida_boss <= 0:
                     break
 
                 limpar()
                 
-                #definindo itens
                 if itens_uso[0] == 'excalibur':
                     dano_a_mais = 7 
                     enuma = True
@@ -500,6 +501,7 @@ def caminho_mal():
                     conquistas.append('Ez game')
             else:
                 perdeu = perda()
+                perdeu = True
                 ultimo_nivel = True
                 break
         
@@ -523,7 +525,7 @@ def conquista():
             break
 
 def regras():
-    global mode, pity
+    global mode, pity, conquistas
 
     while True:
     
@@ -533,7 +535,8 @@ def regras():
             'Regras do jogo:'\
             '\n1-Equipe os itens para poder usá-los na segunda fase do caminho do mal'\
             '\n2-Você pode deixar o jogo mais rapido de zerar mudando o modo nas regras'\
-            '\n3-Se vira'\
+            '\n3-Você pode manter equipado uma arma e uma armadura por vez'\
+            '\n4-Se vira'\
             '\n\nConquistas do jogo:'\
             '\n1-"Experto", consegue ao passar a primeira fase do bem sem errar uma letra'\
             '\n2-"De Primeira", consegue ao acertar de primeira o numero da segunda fase do bem'\
@@ -559,7 +562,7 @@ def regras():
         tempo_atual = time.time() - tempo_inicial
         print(
             f'\nTempo de jogo: {tempo_atual:.2f} segundos\n' \
-            'Pity para item:', f'{pity}/15' if pity <= 15 else '15/15', '(Item obtido)' if 'katana' in conquistas else '(Item não obtido)'
+            'Pity para item:', f'{pity}/15' if pity <= 15 else '15/15', '(Item obtido)' if 'Katana' in conquistas else '(Item não obtido)'
             )
         print('\nPara mudar o modo, digite "1"')
 
@@ -597,7 +600,7 @@ def itens():
         if equipar.isalpha():
             equipar = equipar.lower()
 
-        if equipar in itens_obtidos:
+        if equipar.capitalize() in itens_obtidos:
             if equipar in armas:
                 itens_uso[0] = equipar
             elif equipar in armaduras:
