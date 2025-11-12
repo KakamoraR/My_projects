@@ -551,7 +551,7 @@ def regras():
             '\n1-Equipe os itens para poder usá-los na segunda fase do caminho do mal'\
             '\n2-Você pode deixar o jogo mais rapido de zerar mudando o modo nas regras'\
             '\n3-Você pode manter equipado uma arma e uma armadura por vez'\
-            '\n4-O sangramento dura 2 turnos'\
+            '\n4-O sangramento dura 2 turnos começando assim que aplicado'\
             '\n5-O modo não altera informações consideradas importantes na segunda fase do mal'\
             '\n6-Por padrão, o modo do jogo vem como modo história'\
             '\n6-Se vira'\
