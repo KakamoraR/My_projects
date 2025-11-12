@@ -502,7 +502,6 @@ def caminho_mal():
         tempo(2)
 
         while True:
-            cara_coroa = [1, 2]
 
             limpar()
             cara_coroa_usuario = input('Escolha entre... \n1)cara \t2)coroa. \nEscolha: ')
@@ -510,7 +509,7 @@ def caminho_mal():
             if not cara_coroa_usuario.isdigit() or not cara_coroa_usuario in '12':
                 continue
 
-            if cara_coroa_usuario == random.choice(cara_coroa):
+            if cara_coroa_usuario == random.randint(1,2):
                 print('parabéns, você zerou o caminho do Mal!')
                 if not 'Caminho do Mal' in conquistas:
                     conquistas.append('Caminho do Mal')
