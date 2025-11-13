@@ -514,7 +514,7 @@ def caminho_mal():
                 tempo(2)
                 if not 'Caminho do Mal' in conquistas:
                     conquistas.append('Caminho do Mal')
-                if not 'Ez game' in conquistas and not ultimo_nivel::
+                if not 'Ez game' in conquistas and not ultimo_nivel:
                     conquistas.append('Ez game')
             else:
                 perdeu = perda()
@@ -628,7 +628,7 @@ def itens():
             break
 
 conquistas = []
-itens_obtidos = ['Katana']
+itens_obtidos = []
 armas = ['katana', 'espada', 'excalibur']
 armaduras = ['peitoral', 'capacete']
 itens_uso = ['', '']
