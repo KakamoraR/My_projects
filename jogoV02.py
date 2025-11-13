@@ -509,7 +509,7 @@ def caminho_mal():
             if not cara_coroa_usuario.isdigit() or not cara_coroa_usuario in '12':
                 continue
 
-            if cara_coroa_usuario == random.randint(1,2):
+            if cara_coroa_usuario == str(random.randint(1,2)):
                 print('parabéns, você zerou o caminho do Mal!')
                 if not 'Caminho do Mal' in conquistas:
                     conquistas.append('Caminho do Mal')
