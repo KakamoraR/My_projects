@@ -511,7 +511,7 @@ def caminho_mal():
 
             if cara_coroa_usuario == str(random.randint(1,2)):
                 print('parabéns, você zerou o caminho do Mal!')
-                tempo(2)
+                time.sleep(2)
                 if not 'Caminho do Mal' in conquistas:
                     conquistas.append('Caminho do Mal')
                 if not 'Ez game' in conquistas and not ultimo_nivel:
