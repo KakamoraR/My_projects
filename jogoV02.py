@@ -85,6 +85,10 @@ def caminho_bem():
             resposta_usuario = input('Digite uma letra ou uma palavra: ')
 
             if not resposta_usuario.isalpha() or len(resposta_usuario) > 1:
+                if resposta_usuario == palavra_secreta:
+                    print('Parabéns, você passou para a próxima fase!')
+                    tempo(2)
+                    break
                 limpar()
                 print(palavra_formada if palavra_formada else 'Digite uma letra ou a palavra secreta')
                 continue
