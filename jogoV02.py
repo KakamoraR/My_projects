@@ -637,7 +637,7 @@ def itens():
             break
 
 conquistas = []
-itens_obtidos = ['Katana', 'Capacete']
+itens_obtidos = []
 armas = ['katana', 'espada', 'excalibur']
 armaduras = ['peitoral', 'capacete']
 itens_uso = ['', '']
