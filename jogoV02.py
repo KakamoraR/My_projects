@@ -442,7 +442,7 @@ def caminho_mal():
                         vida_player -= 5
                     time.sleep(2)
 
-                    vida_player -= ataques_monstros[ataque_monstro][1] + defesa
+                    vida_player = vida_player - ataques_monstros[ataque_monstro][1] + defesa
 
                     limpar()
                     print(f'Player está com {vida_player if vida_player > 0 else 0} de vida')
@@ -467,7 +467,7 @@ def caminho_mal():
                         vida_player -= 5
                     time.sleep(2)
 
-                    vida_player -= ataques_monstros[ataque_monstro][1] + defesa
+                    vida_player = vida_player - ataques_monstros[ataque_monstro][1] + defesa
 
                     limpar()
                     print(f'Player está com {vida_player if vida_player > 0 else 0} de vida')
