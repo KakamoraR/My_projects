@@ -415,7 +415,7 @@ def caminho_mal():
 
                 ataque_monstro = random.randint(0,1) if vida_monstro > 0 else random.randint(0,2)
 
-                if ataque_monstro == 1:
+                if ataque_monstro == 1 and vida_monstro - dano_player > 0:
                     sangramento = True
 
                 if vida_monstro > 0:
@@ -515,19 +515,20 @@ def caminho_mal():
                 continue
 
             if cara_coroa_usuario == str(random.randint(1,2)):
+                limpar()
                 print('parabéns, você zerou o caminho do Mal!')
                 time.sleep(2)
                 if not 'Caminho do Mal' in conquistas:
                     conquistas.append('Caminho do Mal')
                 if not 'Ez game' in conquistas and not ultimo_nivel:
                     conquistas.append('Ez game')
+                    break
             else:
                 perdeu = perda()
                 ultimo_nivel = True
                 break
         
-        if perdeu:
-            break
+        break
 
 def conquista():
 
