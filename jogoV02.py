@@ -415,7 +415,7 @@ def caminho_mal():
 
                 ataque_monstro = random.randint(0,1) if vida_monstro > 0 else random.randint(0,2)
 
-                if (ataque_monstro == 1 and vida_monstro - dano_player > 0) or (ataque_monstro == 1 and vida_boss - dano_player > 0 and vida_monstro == 0):
+                if (ataque_monstro == 1 and vida_monstro - dano_player > 0) or (ataque_monstro == 1 and vida_boss - dano_player > 0 and vida_monstro <= 0):
                     sangramento = True
 
                 if vida_monstro > 0:
