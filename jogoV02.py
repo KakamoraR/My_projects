@@ -415,7 +415,7 @@ def caminho_mal():
 
                 ataque_monstro = random.randint(0,1) if vida_monstro > 0 else random.randint(0,2)
 
-                if ataque_monstro == 1 and vida_monstro - dano_player > 0:
+                if (ataque_monstro == 1 and vida_monstro - dano_player > 0) or (ataque_monstro == 1 and vida_boss - dano_player > 0 and vida_monstro == 0):
                     sangramento = True
 
                 if vida_monstro > 0:
@@ -620,7 +620,7 @@ def itens():
             if d:
                 print(d)
 
-        equipar = input('\nSe deseja equipar algum item, digite o nome aqui.\n(Para sair digite qualquer coisa)\nEscolha: ')
+        equipar = input('\nSe deseja equipar algum item, digite o nome aqui. Para desequipar os itens, digite "Clear".\n(Para sair digite qualquer coisa)\nEscolha: ')
 
         if equipar.isalpha():
             equipar = equipar.lower()
@@ -630,11 +630,14 @@ def itens():
                 itens_uso[0] = equipar
             elif equipar in armaduras:
                 itens_uso[1] = equipar
+        elif equipar.capitalize() == 'Clear':
+            itens_uso[0] = ''
+            itens_uso[1] = ''
         elif equipar:
             break
 
 conquistas = []
-itens_obtidos = []
+itens_obtidos = ['Katana', 'Capacete']
 armas = ['katana', 'espada', 'excalibur']
 armaduras = ['peitoral', 'capacete']
 itens_uso = ['', '']
