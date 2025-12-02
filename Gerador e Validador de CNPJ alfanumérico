@@ -1,0 +1,40 @@
+import string
+
+alfanumerico = [i for i in range(0,10)] + list(string.ascii_uppercase)
+
+digitosVerificadores = ''
+validar = False
+
+def validarCNPJ(cnpj):
+    global validar, digitosVerificadores
+    for i in range(0,2):
+        valoresTeste = []
+        if validar:
+            cnpjContrario = cnpj[12::-1]
+        else:
+            cnpjContrario = cnpj[11::-1]
+
+        for digito in cnpjContrario:
+            if digito.isalpha():
+                valoresTeste.append(alfanumerico.index(digito) + 7)
+            else:
+                valoresTeste.append(int(digito))
+
+        contagem = 2
+        calculo = []
+
+        for j in valoresTeste:
+            calculo.append(contagem * j)
+            if contagem == 9:
+                contagem = 2
+                continue
+            else:
+                contagem += 1
+        calculo = 11 - (sum(calculo) % 11) if sum(calculo) % 11 != 1 or sum(calculo) % 11 != 0 else 0
+
+        if calculo == int(cnpj[12 if not validar else 13]):
+            digitosVerificadores += str(calculo)
+
+        validar = True
+
+    return digitosVerificadores
