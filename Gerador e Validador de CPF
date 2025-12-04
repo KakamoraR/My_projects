@@ -1,6 +1,6 @@
 import random
 import os
-import pyperclip
+import clipboard
 
 def validador_cpf(cpf):
     regressivo = 10
@@ -39,7 +39,7 @@ while True:
         for i in range(9):
             cpf += str(random.randint(0,9))
         cpf = validador_cpf(cpf)
-        pyperclip.copy(cpf)
+        clipboard.copy(cpf)
         print(f'CPF gerado: {cpf}\n(Copiado automaticamente)')
     elif escolha == '2':
         limpar()
