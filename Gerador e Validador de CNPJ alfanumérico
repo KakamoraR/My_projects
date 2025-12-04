@@ -1,9 +1,9 @@
 import string
+import random
 
 alfanumerico = [i for i in range(0,10)] + list(string.ascii_uppercase)
 
 def validarCNPJ(cnpj):
-    global validar
     cnpj = cnpj[:12]
     validar = False
     
@@ -37,3 +37,28 @@ def validarCNPJ(cnpj):
         validar = True
     
     return cnpj
+
+def gerarCNPJ():
+    aleatorio = ''
+
+    for i in range(0,12):
+        aleatorio += str(random.choice(alfanumerico))
+
+    return validarCNPJ(aleatorio)
+
+
+while True:
+    escolha = input('O que deseja fazer? \n1) Gerar CNPJ \t2) Validar CNPJ\n')
+
+    if not escolha in '12':
+        continue
+
+    if escolha == '1':
+        print(gerarCNPJ())
+    elif escolha == '2':
+        cnpjPessoa = input('Digite o CNPJ para a validação: ').upper().replace('-', '').replace('/', '').replace('.', '')
+
+        if validarCNPJ(cnpjPessoa) == cnpjPessoa:
+            print('CNPJ válido')
+        else:
+            print('CNPJ inválido')
