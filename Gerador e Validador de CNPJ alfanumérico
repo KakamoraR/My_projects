@@ -1,7 +1,15 @@
 import string
 import random
+import clipboard
+import os
 
 alfanumerico = [i for i in range(0,10)] + list(string.ascii_uppercase)
+
+def limpar():
+    if os.name == 'nt':
+        os.system('cls')
+    else:
+        os.system('clear')
 
 def validarCNPJ(cnpj):
     cnpj = cnpj[:12]
@@ -46,7 +54,7 @@ def gerarCNPJ():
 
     return validarCNPJ(aleatorio)
 
-
+limpar()
 while True:
     escolha = input('O que deseja fazer? \n1) Gerar CNPJ \t2) Validar CNPJ\n')
 
@@ -54,8 +62,12 @@ while True:
         continue
 
     if escolha == '1':
-        print(gerarCNPJ())
+        cnpj = gerarCNPJ()
+        clipboard.copy(cnpj)
+        limpar()
+        print(cnpj, '\n(CNPJ copiado automaticamente)')
     elif escolha == '2':
+        limpar()
         cnpjPessoa = input('Digite o CNPJ para a validação: ').upper().replace('-', '').replace('/', '').replace('.', '')
 
         if validarCNPJ(cnpjPessoa) == cnpjPessoa:
