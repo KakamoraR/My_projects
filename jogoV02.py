@@ -522,7 +522,7 @@ def caminho_mal():
                     conquistas.append('Caminho do Mal')
                 if not 'Ez game' in conquistas and not ultimo_nivel:
                     conquistas.append('Ez game')
-                    break
+                break
             else:
                 perdeu = perda()
                 ultimo_nivel = True
