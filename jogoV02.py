@@ -389,10 +389,12 @@ def caminho_mal():
 
                 print(f'Player jogou o dado e conseguiu {dado}')
                 tempo(2)
-                if enuma:
+                if enuma and dado == 20:
                     print('Player sente um poder surgir em suas veias.')
                     time.sleep(2)
                     print('Player - Enuma... Eilish!!!')
+                    time.sleep(2)
+                    print('(Monstro' if vida_monstro > 0 else '(Boss', 'tomou hitkill)')
                 else:
                     print(f'Player deu {dano_player} de dano.')
                 time.sleep(2)
