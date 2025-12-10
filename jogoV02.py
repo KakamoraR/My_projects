@@ -223,7 +223,7 @@ def caminho_bem():
             print('Parabéns, você zerou o Caminho do Bem')
             pity += 1
 
-        if ((pity >= 15 and not 'katana' in itens_obtidos) or \
+        if ((pity >= 15 and not 'Katana' in itens_obtidos) or \
             (random.randint(1,30) == 1 and not 'Katana' in itens_obtidos)):
             conquistas.append('Katana')
             itens_obtidos.append('Katana')
