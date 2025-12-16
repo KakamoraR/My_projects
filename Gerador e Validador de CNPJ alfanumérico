@@ -38,7 +38,7 @@ def validarCNPJ(cnpj):
                 continue
             else:
                 contagem += 1
-        calculo = 11 - (sum(calculo) % 11) if sum(calculo) % 11 != 1 or sum(calculo) % 11 != 0 else 0
+        calculo = 11 - (sum(calculo) % 11) if sum(calculo) % 11 < 2 else 0
 
         cnpj += str(calculo)
 
