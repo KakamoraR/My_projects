@@ -3,24 +3,23 @@ import os
 import clipboard
 
 def validador_cpf(cpf):
-    regressivo = 10
     validador = cpf[:9]
 
-    for i in range(0, 2):
-        digitos = 0
+    for _ in range(2):
+        soma = 0
+        regressivo = len(validador) + 1
 
-        for i in validador:
-            digitos = (int(i) * regressivo) + digitos
+        for digito in validador:
+            soma += int(digito) * regressivo
             regressivo -= 1
 
-        digitos = digitos % 11
+        resto = soma % 11
 
-        if str(digitos) in "10":
+        if resto < 2:
             verificador = 0
         else:
-            verificador = 11 - digitos
+            verificador = 11 - resto
 
-        regressivo = 11
         validador += str(verificador)
 
     return validador
