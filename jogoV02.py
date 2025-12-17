@@ -406,6 +406,9 @@ def caminho_mal():
                     vida_player -= 5
                     sangramento = False
                     print(f'Player está com {vida_player if vida_player > 0 else 0} de vida')
+                    if vida_player < 1:
+                        perdeu = perda()
+                        break
                     time.sleep(2)
                     limpar()
 
