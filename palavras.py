@@ -37,7 +37,8 @@ palavra = [
     "Medalha", "Trofeu", "Competicao", "Corrida", "Maratona", "Olimpiada", "Copa", "Campeonato",
     "Tempo", "Clima", "Chuva", "Sol", "Nuvem", "Vento", "Neve", "Granizo", "Frio", "Calor",
     "Primavera", "Verao", "Outono", "Inverno", "Ano", "Mes", "Semana", "Dia", "Hora", "Minuto",
-    "Segundo", "Relogio", "Calendario", "Agenda", "Prazo", "Data", "Futuro", "Passado", "Presente"
+    "Segundo", "Relogio", "Calendario", "Agenda", "Prazo", "Data", "Futuro", "Passado", "Presente",
+    "Pneumoultramicroscopicossilicovulcanoconiotico"
 ]
 
 def palavra_aleatoria():
