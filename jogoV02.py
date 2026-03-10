@@ -87,7 +87,7 @@ def caminho_bem():
             if not resposta_usuario.isalpha() or len(resposta_usuario) > 1:
                 if resposta_usuario == palavra_secreta:
                     limpar()
-                    print('Parabéns, você passou para a próxima fase!')
+                    print(f'Parabéns, você passou para a próxima fase! \nA palavra era: {palavra_secreta}')
                     tempo(2)
                     break
                 limpar()
@@ -113,7 +113,7 @@ def caminho_bem():
             limpar()
 
             if palavra_formada == palavra_secreta:
-                print('Parabéns, você passou para a próxima fase!')
+                print(f'Parabéns, você passou para a próxima fase! \nA palavra era: {palavra_secreta}')
                 tempo(2)
                 break
 
