@@ -52,13 +52,13 @@ def perda():
 def verificar_conquistas():
     global conquistas, tempo_inicial
 
-    if len(conquistas) == 16 and not '100%' in conquistas:
+    if len(conquistas) == 17 and not '100%' in conquistas:
         conquistas.append('100%')
 
     if time.time() - tempo_inicial <= 1800 and '100%' in conquistas and not 'Speedrunner' in conquistas:
         conquistas.append('Speedrunner')
 
-    if len(conquistas) == 18 and not 'Platinado' in conquistas:
+    if len(conquistas) == 19 and not 'Platinado' in conquistas:
         conquistas.append('Platinado')
 
 def caminho_bem():
@@ -121,6 +121,8 @@ def caminho_bem():
 
         if not erro and not 'Experto' in conquistas:
             conquistas.append('Experto')
+        if palavra_secreta == "pneumoultramicroscopicossilicovulcanoconiotico" and not erro and not 'Pneumoultramicroscopicossilicovulcanoconiotico?' in conquistas:
+            conquistas.append('Pneumoultramicroscopicossilicovulcanoconiotico?')
         
         if continuar() == False:
             break
@@ -569,6 +571,7 @@ def regras():
             '\n6-Se vira'\
             '\n\nConquistas do jogo:'\
             '\n1-"Experto", consegue ao passar a primeira fase do bem sem errar uma letra'\
+            '\n2-"Pneumoultramicroscopicossilicovulcanoconiotico?", consegue ao vir essa palavra na primeira fase do bem'\
             '\n2-"De Primeira", consegue ao acertar de primeira o numero da segunda fase do bem'\
             '\n3-"Katana", consegue ao pegar a "Katana" depois de zerar o caminho do bem'\
             '\n4-"Achei Fácil", consegue ao passar a terceira fase do bem sem empatar ou perder'\
