@@ -1,4 +1,4 @@
-import random, time, os, palavras, sys
+import random, time, os, palavras, sys, json
 
 def limpar():
     if os.name == 'nt':
@@ -121,7 +121,7 @@ def caminho_bem():
 
         if not erro and not 'Experto' in conquistas:
             conquistas.append('Experto')
-        if palavra_secreta == "pneumoultramicroscopicossilicovulcanoconiotico" and not erro and not 'Pneumoultramicroscopicossilicovulcanoconiotico?' in conquistas:
+        if palavra_secreta == 'pneumoultramicroscopicossilicovulcanoconiotico' and not erro and not 'Pneumoultramicroscopicossilicovulcanoconiotico?' in conquistas:
             conquistas.append('Pneumoultramicroscopicossilicovulcanoconiotico?')
         
         if continuar() == False:
@@ -547,8 +547,14 @@ def conquista():
 
         print('Segue conquistas ganhas até agora: \n')
 
-        for a, b in enumerate(conquistas):
+        for a, b in enumerate(dados["conquistas"]):
             print(a+1, b, sep='-')
+
+        if "Platinado" in dados["conquistas"]:
+
+            print('\nAo sair desta tela, suas conquistas resetarão. \nTire print ou perca elas como se nada tivesse acontecido.')
+
+            dados["conquistas"] = []
 
         if sair_telas():
             break
@@ -644,7 +650,10 @@ def itens():
         elif equipar:
             break
 
-conquistas = []
+with open("banco.json", "r") as arquivo:
+    dados = json.load(arquivo)
+
+conquistas = dados["conquistas"]
 itens_obtidos = []
 armas = ['katana', 'espada', 'excalibur']
 armaduras = ['peitoral', 'capacete']
@@ -658,6 +667,9 @@ while True:
     perdeu = False
 
     verificar_conquistas()
+
+    with open("banco.json", "w") as arquivo:
+        json.dump(dados, arquivo, indent=1, ensure_ascii=False)
 
     caminho = menu()
 
