@@ -650,7 +650,7 @@ def itens():
         elif equipar:
             break
 
-with open("banco.json", "r") as arquivo:
+with open("bancoJogo2.json", "r") as arquivo:
     dados = json.load(arquivo)
 
 conquistas = dados["conquistas"]
@@ -668,7 +668,7 @@ while True:
 
     verificar_conquistas()
 
-    with open("banco.json", "w") as arquivo:
+    with open("bancoJogo2.json", "w") as arquivo:
         json.dump(dados, arquivo, indent=1, ensure_ascii=False)
 
     caminho = menu()
