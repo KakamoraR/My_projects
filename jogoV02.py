@@ -55,7 +55,7 @@ def verificar_conquistas():
     if len(conquistas) == 17 and not '100%' in conquistas:
         conquistas.append('100%')
 
-    if time.time() - tempo_inicial <= 1800 and '100%' in conquistas and not 'Speedrunner' in conquistas:
+    if time.time() - tempo_inicial <= 1800 and '100%' in conquistas and not 'Speedrunner' in conquistas and recarregado:
         conquistas.append('Speedrunner')
 
     if len(conquistas) == 19 and not 'Platinado' in conquistas:
@@ -595,7 +595,7 @@ def regras():
             '\n16-"Caminho do Mal", consegue ao zerar o caminho do mal'\
             '\n17-"100%", consegue ao pegar todas as 16 conquistas anteriores'\
             '\n18-"Speedrunner", consegue ao zerar o jogo em 30 minutos'\
-            '\n19-"Platinado", consegue ao pegar todas as conquistas do jogo'\
+            '\n19-"Platinado", consegue ao pegar todas as conquistas do jogo sem ter parado/fechado o jogo desde a primeira conquista'\
             )
 
         tempo_atual = time.time() - tempo_inicial
@@ -652,6 +652,11 @@ def itens():
 
 with open("bancoJogo2.json", "r") as arquivo:
     dados = json.load(arquivo)
+
+recarregado = True
+
+if dados["conquistas"]:
+    recarregado = False
 
 conquistas = dados["conquistas"]
 itens_obtidos = []
