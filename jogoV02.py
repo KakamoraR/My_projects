@@ -52,13 +52,13 @@ def perda():
 def verificar_conquistas():
     global conquistas, tempo_inicial
 
-    if len(conquistas) == 17 and not '100%' in conquistas:
+    if len(conquistas) == 18 and not '100%' in conquistas:
         conquistas.append('100%')
 
     if time.time() - tempo_inicial <= 1800 and '100%' in conquistas and not 'Speedrunner' in conquistas and recarregado:
         conquistas.append('Speedrunner')
 
-    if len(conquistas) == 19 and not 'Platinado' in conquistas:
+    if len(conquistas) == 20 and not 'Platinado' in conquistas:
         conquistas.append('Platinado')
 
 def caminho_bem():
@@ -254,52 +254,60 @@ def caminho_mal():
 
         nivel = 0
 
-        while True:
-            numero_rapido = ''
-
-            limpar()
-            print(f'Preparar... apontar... vai!! \tnivel:{nivel+1}/3')
-            time.sleep(2)
-            limpar()
-
-            if nivel == 0:
-                for i in range(0,4):
-                    numero_rapido += str(random.randint(0,9))
-                print(numero_rapido)
-                time.sleep(0.6)
-            elif nivel == 1:
-                for i in range(0,6):
-                    numero_rapido += str(random.randint(0,9))
-                print(numero_rapido)
-                time.sleep(0.8)
-            elif nivel == 2:
-                for i in range(0,8):
-                    numero_rapido += str(random.randint(0,9))
-                print(numero_rapido)
-                time.sleep(1)
-
+        try:
             while True:
+                numero_rapido = ''
+
+                limpar()
+                print(f'Preparar... apontar... vai!! \tnivel:{nivel+1}/3')
+                time.sleep(2)
                 limpar()
 
-                numero_visto = input('Número visto: ')
+                if nivel == 0:
+                    for i in range(0,4):
+                        numero_rapido += str(random.randint(0,9))
+                    print(numero_rapido)
+                    time.sleep(0.6)
+                elif nivel == 1:
+                    for i in range(0,6):
+                        numero_rapido += str(random.randint(0,9))
+                    print(numero_rapido)
+                    time.sleep(0.8)
+                elif nivel == 2:
+                    for i in range(0,8):
+                        numero_rapido += str(random.randint(0,9))
+                    print(numero_rapido)
+                    time.sleep(1)
+        
+                while True:
+                    limpar()
 
-                if not numero_visto.isdigit():
-                    continue
+                    numero_visto = input('Número visto: ')
 
-                break
+                    if not numero_visto.isdigit():
+                        continue
 
-            if numero_visto == numero_rapido:
-                limpar()
-                nivel += 1
-                if nivel == 3:
-                    print('Parabéns, você passou para a próxima fase!')
-                    tempo(2)
                     break
-                print('Parabéns, você passou de nível!')
-                tempo(2)
-            else:
-                perdeu = perda()
-                break
+
+                if numero_visto == numero_rapido:
+                    limpar()
+                    nivel += 1
+                    if nivel == 3:
+                        print('Parabéns, você passou para a próxima fase!')
+                        tempo(2)
+                        break
+                    print('Parabéns, você passou de nível!')
+                    tempo(2)
+                else:
+                    perdeu = perda()
+                    break
+        except KeyboardInterrupt:
+            if not 'Safado' in conquistas:
+                conquistas.append('Safado')
+            print('Não ouse trapacear de novo!')
+            time.sleep(2)
+            perdeu = True
+            break
 
         if perdeu:
             break
@@ -583,19 +591,20 @@ def regras():
             '\n4-"Achei Fácil", consegue ao passar a terceira fase do bem sem empatar ou perder'\
             '\n5-"Caminho do Bem", consegue ao zerar o caminho do bem'\
             '\n6-"Visão", consegue ao passar a primeira fase do mal'\
-            '\n7-"Vinte natural", consegue ao tirar um 20 no dado da segunda fase do mal'\
-            '\n8-"Gilga reference", consegue ao tirar um 20 no dado da segunda fase do mal com a "Excalibur"'\
-            '\n9-"Espada", consegue ao pegar a "Espada" da segunda fase do mal'\
-            '\n10-"Excalibur", consegue ao pegar a "Excalibur" da segunda fase do mal'\
-            '\n11-"Capacete", consegue ao pegar a "Capacete" da segunda fase do mal'\
-            '\n12-"Peitoral", consegue ao pegar a "Peitoral" da segunda fase do mal'\
-            '\n13-"Full set", consegue ao pegar todos os itens do jogo'\
-            '\n14-"Peito de Ferro", consegue ao passar a segunda fase do mal sem perder mais de 50 de vida'\
-            '\n15-"Ez game", consegue ao passar a terceira fase do mal na primeira tentativa'\
-            '\n16-"Caminho do Mal", consegue ao zerar o caminho do mal'\
-            '\n17-"100%", consegue ao pegar todas as 16 conquistas anteriores'\
-            '\n18-"Speedrunner", consegue ao zerar o jogo em 30 minutos'\
-            '\n19-"Platinado", consegue ao pegar todas as conquistas do jogo sem ter parado/fechado o jogo desde a primeira conquista'\
+            '\n7-"Safado", consegue ao tentar tirar print da tela na primeira fase do mal'\
+            '\n8-"Vinte natural", consegue ao tirar um 20 no dado da segunda fase do mal'\
+            '\n9-"Gilga reference", consegue ao tirar um 20 no dado da segunda fase do mal com a "Excalibur"'\
+            '\n10-"Espada", consegue ao pegar a "Espada" da segunda fase do mal'\
+            '\n11-"Excalibur", consegue ao pegar a "Excalibur" da segunda fase do mal'\
+            '\n12-"Capacete", consegue ao pegar a "Capacete" da segunda fase do mal'\
+            '\n13-"Peitoral", consegue ao pegar a "Peitoral" da segunda fase do mal'\
+            '\n14-"Full set", consegue ao pegar todos os itens do jogo'\
+            '\n15-"Peito de Ferro", consegue ao passar a segunda fase do mal sem perder mais de 50 de vida'\
+            '\n16-"Ez game", consegue ao passar a terceira fase do mal na primeira tentativa'\
+            '\n17-"Caminho do Mal", consegue ao zerar o caminho do mal'\
+            '\n18-"100%", consegue ao pegar todas as 16 conquistas anteriores'\
+            '\n19-"Speedrunner", consegue ao zerar o jogo em 30 minutos'\
+            '\n20-"Platinado", consegue ao pegar todas as conquistas do jogo sem ter parado/fechado o jogo desde a primeira conquista'\
             )
 
         tempo_atual = time.time() - tempo_inicial
